@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Hub — The AI Coding Platform Where You Stay in Control</title>
-<meta name="description" content="Design your product visually, AI builds it step by step, intervene anywhere. The first AI coding platform where you stay in control.">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>LaunchHub — Build Your Tech Startup Without Writing Code</title>
+<meta name="description" content="LaunchHub's AI builds your product step by step while you stay in control. No dev skills needed — just your vision.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -140,7 +139,7 @@ nav {
   height: 72px;
 }
 .nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; }
-.nav-brand img { width: 36px; height: 36px; }
+.nav-brand svg { width: 36px; height: 36px; }
 .nav-brand span:first-of-type { color: #2563EB; }
 .nav-links { display: flex; align-items: center; gap: 32px; }
 .nav-links a {
@@ -256,6 +255,7 @@ nav {
 .terminal-line:nth-child(4) { animation-delay: 3.6s; }
 .terminal-line:nth-child(5) { animation-delay: 4.4s; }
 .terminal-line:nth-child(6) { animation-delay: 5.2s; }
+.terminal-line:nth-child(7) { animation-delay: 6.0s; }
 .terminal-prompt {
   font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
   color: #2563EB; font-weight: 600; white-space: nowrap;
@@ -317,90 +317,138 @@ nav {
 }
 .step-desc { color: #94A3B8; font-size: 0.95rem; line-height: 1.7; }
 
-/* ========== WHY AI HUB (COMPARISON) ========== */
-.why-section { padding: 120px 0; position: relative; }
-.comparison-grid {
-  display: grid; grid-template-columns: 1fr;
-  gap: 16px; margin-top: 64px; max-width: 900px;
-}
-.comparison-row {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 2px; border-radius: 14px; overflow: hidden;
-}
-.comparison-header {
-  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.08em; padding: 16px 24px;
-}
-.comparison-header.them {
-  background: rgba(239, 68, 68, 0.06); color: #F87171;
-  border-radius: 14px 0 0 0;
-}
-.comparison-header.us {
-  background: rgba(37, 99, 235, 0.1); color: #60A5FA;
-  border-radius: 0 14px 0 0;
-}
-.comparison-cell {
-  padding: 20px 24px; font-size: 0.95rem; line-height: 1.6;
-  display: flex; align-items: flex-start; gap: 12px;
-}
-.comparison-cell.them {
-  background: rgba(239, 68, 68, 0.03);
-  border-left: 1px solid rgba(239, 68, 68, 0.08);
-  color: #94A3B8;
-}
-.comparison-cell.us {
-  background: rgba(37, 99, 235, 0.04);
-  border-right: 1px solid rgba(37, 99, 235, 0.1);
-  color: #E2E8F0;
-}
-.comparison-icon { flex-shrink: 0; margin-top: 2px; }
-.comparison-cell.them .comparison-icon { color: #EF4444; }
-.comparison-cell.us .comparison-icon { color: #22C55E; }
-.comparison-row:last-child .comparison-cell.them { border-radius: 0 0 0 14px; }
-.comparison-row:last-child .comparison-cell.us { border-radius: 0 0 14px 0; }
-
-/* ========== FEATURES ========== */
-.features-section { padding: 120px 0; position: relative; }
-.features-section-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 40% at 50% 100%, rgba(37, 99, 235, 0.04), transparent);
-}
-.features-grid {
+/* ========== USP SECTION ========== */
+.usp-section { padding: 120px 0; position: relative; }
+.usp-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 24px; margin-top: 64px;
 }
-.feature-card {
+.usp-card {
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: 20px; padding: 36px 28px;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative; overflow: hidden;
 }
-.feature-card::before {
+.usp-card::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), transparent);
   opacity: 0; transition: opacity 0.35s;
 }
-.feature-card:hover::before { opacity: 1; }
-.feature-card:hover {
+.usp-card:hover::before { opacity: 1; }
+.usp-card:hover {
   border-color: rgba(37, 99, 235, 0.2);
   transform: translateY(-4px);
   box-shadow: 0 16px 48px rgba(0,0,0,0.2);
 }
-.feature-icon {
+.usp-icon {
   width: 48px; height: 48px; border-radius: 14px;
   background: rgba(37, 99, 235, 0.1);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 20px; color: #60A5FA; position: relative; z-index: 1;
 }
-.feature-title {
+.usp-title {
   font-size: 1.1rem; font-weight: 700; color: #F8FAFC;
   margin-bottom: 10px; position: relative; z-index: 1;
 }
-.feature-desc {
+.usp-desc {
   font-size: 0.9rem; color: #94A3B8; line-height: 1.7;
   position: relative; z-index: 1;
 }
+
+/* ========== HOW AI BUILDS FASTER ========== */
+.speed-section { padding: 120px 0; position: relative; }
+.speed-section-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(37, 99, 235, 0.04), transparent);
+}
+.speed-comparison {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 32px; margin-top: 64px; max-width: 900px;
+}
+.speed-card {
+  border-radius: 20px; padding: 40px 32px;
+  position: relative; overflow: hidden;
+}
+.speed-card.traditional {
+  background: rgba(239, 68, 68, 0.04);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+}
+.speed-card.launchhub {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(15, 23, 42, 0.8));
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1), 0 16px 48px rgba(37, 99, 235, 0.08);
+}
+.speed-card-label {
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 20px;
+}
+.speed-card.traditional .speed-card-label { color: #F87171; }
+.speed-card.launchhub .speed-card-label { color: #60A5FA; }
+.speed-card-title {
+  font-size: 1.25rem; font-weight: 700; color: #F8FAFC;
+  margin-bottom: 16px;
+}
+.speed-steps { list-style: none; }
+.speed-steps li {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0; font-size: 0.9rem; color: #94A3B8; line-height: 1.6;
+}
+.speed-steps li svg { flex-shrink: 0; margin-top: 4px; }
+.speed-card.traditional .speed-steps li svg { color: #EF4444; }
+.speed-card.launchhub .speed-steps li svg { color: #22C55E; }
+.speed-result {
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
+}
+.speed-card.traditional .speed-result { color: #F87171; }
+.speed-card.launchhub .speed-result { color: #60A5FA; }
+
+/* ========== IN DEVELOPMENT BANNER ========== */
+.dev-banner { padding: 100px 0; position: relative; }
+.dev-banner-box {
+  position: relative; border-radius: 24px; overflow: hidden;
+  padding: 64px 48px; text-align: center;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.06), rgba(37, 99, 235, 0.06));
+  border: 1px solid rgba(234, 179, 8, 0.15);
+}
+.dev-banner-box::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 50% at 20% 30%, rgba(234, 179, 8, 0.04), transparent),
+    radial-gradient(ellipse 40% 50% at 80% 70%, rgba(37, 99, 235, 0.04), transparent);
+}
+.dev-banner-box > * { position: relative; z-index: 1; }
+.dev-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 18px; border-radius: 100px;
+  background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.25);
+  font-size: 0.8rem; font-weight: 700; color: #FBBF24;
+  margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.dev-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #FBBF24;
+  animation: pulse 2s ease infinite;
+}
+.dev-banner-title {
+  font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 800;
+  color: #F8FAFC; margin-bottom: 12px; letter-spacing: -0.02em;
+}
+.dev-banner-subtitle {
+  font-size: 1.1rem; color: #94A3B8; margin-bottom: 40px; line-height: 1.7;
+}
+.dev-perks {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; max-width: 600px; margin: 0 auto; text-align: left;
+}
+.dev-perk {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 20px; border-radius: 14px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.95rem; font-weight: 500; color: #E2E8F0;
+}
+.dev-perk svg { flex-shrink: 0; color: #FBBF24; }
 
 /* ========== PRICING ========== */
 .pricing-section { padding: 120px 0; position: relative; }
@@ -431,6 +479,13 @@ nav {
   font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.06em; color: #fff; white-space: nowrap;
 }
+.limited-badge {
+  position: absolute; top: -14px; right: 24px;
+  padding: 6px 16px; border-radius: 100px;
+  background: linear-gradient(135deg, #EAB308, #D97706);
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: #1a1a1a; white-space: nowrap;
+}
 .price-tier {
   font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.06em; color: #60A5FA; margin-bottom: 8px;
@@ -457,6 +512,14 @@ nav {
 }
 .price-features li svg { flex-shrink: 0; margin-top: 2px; color: #22C55E; }
 .price-card .btn { width: 100%; justify-content: center; }
+.price-credit {
+  margin-top: 16px; text-align: center;
+  font-size: 0.8rem; color: #64748B; font-style: italic;
+}
+.price-urgency {
+  text-align: center; margin-top: 32px;
+  font-size: 0.95rem; font-weight: 600; color: #FBBF24;
+}
 
 /* ========== SOCIAL PROOF ========== */
 .social-proof { padding: 120px 0; position: relative; }
@@ -464,20 +527,9 @@ nav {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 60% 40% at 50% 50%, rgba(37, 99, 235, 0.04), transparent);
 }
-.stats-row {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 32px; margin-bottom: 80px;
-}
-.stat-item { text-align: center; }
-.stat-value {
-  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #F8FAFC;
-  letter-spacing: -0.03em; margin-bottom: 4px;
-}
-.stat-value .blue { color: #60A5FA; }
-.stat-label { font-size: 0.85rem; color: #64748B; font-weight: 500; }
 .testimonials-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 24px; margin-top: 64px;
 }
 .testimonial-card {
   background: rgba(255,255,255,0.02);
@@ -565,10 +617,10 @@ footer {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
-  .steps-grid, .features-grid, .pricing-grid, .testimonials-grid {
+  .steps-grid, .usp-grid, .pricing-grid, .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .speed-comparison { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
@@ -582,15 +634,11 @@ footer {
     padding: 24px; gap: 16px;
     border-bottom: 1px solid rgba(255,255,255,0.06);
   }
-  .steps-grid, .features-grid, .pricing-grid, .testimonials-grid {
+  .steps-grid, .usp-grid, .pricing-grid, .testimonials-grid {
     grid-template-columns: 1fr;
   }
-  .comparison-row { grid-template-columns: 1fr; }
-  .comparison-header.them { border-radius: 14px 14px 0 0; }
-  .comparison-header.us { border-radius: 0; }
-  .comparison-row:last-child .comparison-cell.them { border-radius: 0; }
-  .comparison-row:last-child .comparison-cell.us { border-radius: 0 0 14px 14px; }
-  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .speed-comparison { grid-template-columns: 1fr; }
+  .dev-perks { grid-template-columns: 1fr; }
   .cta-box { padding: 56px 24px; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -605,17 +653,21 @@ footer {
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <img src="icon.svg" alt="AI Hub icon">
-      <span>AI</span><span>Hub</span>
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#2563EB"/>
+        <path d="M10 26V10l8 5-8 5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M18 18h8M18 13h6M18 23h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Launch</span><span>Hub</span>
     </a>
     <div class="nav-links" id="navLinks">
       <a href="#how-it-works">How It Works</a>
-      <a href="#why-aihub">Why AI Hub</a>
-      <a href="#features">Features</a>
+      <a href="#why-launchhub">Why LaunchHub</a>
       <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Testimonials</a>
     </div>
     <div class="nav-cta">
-      <a href="#pricing" class="btn btn-primary">Get Started</a>
+      <a href="#pricing" class="btn btn-primary">Reserve Your Spot</a>
     </div>
     <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -628,17 +680,17 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="dot"></span> Now in Early Access</div>
+    <div class="hero-badge"><span class="dot"></span> Early Access &mdash; In Active Development</div>
     <h1>
-      Build software with AI.<br>
-      <span class="gradient-text">Stay in control.</span>
+      Build Your Tech Startup<br>
+      <span class="gradient-text">Without Writing Code</span>
     </h1>
     <p class="hero-subtitle">
-      The first AI coding platform where you design your product visually, AI builds it step by step, and you can intervene anywhere.
+      LaunchHub's AI builds your product step by step while you stay in control. No dev skills needed &mdash; just your vision.
     </p>
     <div class="hero-actions">
       <a href="#pricing" class="btn btn-primary btn-large">
-        Start Building
+        Reserve Your Spot &mdash; $10
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
       <a href="#how-it-works" class="btn btn-secondary btn-large">See How It Works</a>
@@ -650,32 +702,36 @@ footer {
           <span class="terminal-dot"></span>
           <span class="terminal-dot"></span>
           <span class="terminal-dot"></span>
-          <span class="terminal-title">ai-hub build &mdash; saas-dashboard</span>
+          <span class="terminal-title">launchhub build &mdash; my-saas-app</span>
         </div>
         <div class="terminal-body">
           <div class="terminal-line">
             <span class="terminal-prompt">$</span>
-            <span class="terminal-text">aihub build <span class="highlight">--project</span> saas-dashboard</span>
+            <span class="terminal-text">launchhub build <span class="highlight">--project</span> my-saas-app</span>
           </div>
           <div class="terminal-line">
             <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[step 1/12]</span> Scaffolding Next.js project... <span class="success">done</span></span>
+            <span class="terminal-text"><span class="dim">[fork 1/3]</span> Building auth + dashboard... <span class="success">done</span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[step 2/12]</span> Creating auth module with Clerk... <span class="success">done</span></span>
+            <span class="terminal-text"><span class="dim">[fork 2/3]</span> Building payment integration... <span class="success">done</span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[step 3/12]</span> Building dashboard layout... <span class="warn">review required</span></span>
+            <span class="terminal-text"><span class="dim">[fork 3/3]</span> Building landing page... <span class="success">done</span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">tokens:</span> 14,281 &middot; <span class="dim">cost:</span> <span class="highlight">$0.42</span> &middot; <span class="dim">files:</span> 23 created</span>
+            <span class="terminal-text"><span class="dim">[merge]</span> Combining 3 parallel paths... <span class="success">clean merge</span></span>
           </div>
           <div class="terminal-line">
             <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="success">&#9679;</span> You&rsquo;re in control. Approve, edit, or rollback any step.</span>
+            <span class="terminal-text"><span class="dim">tokens:</span> 8,421 <span class="dim">(saved 62%)</span> &middot; <span class="dim">cost:</span> <span class="highlight">$0.28</span> &middot; <span class="dim">files:</span> 47 created</span>
+          </div>
+          <div class="terminal-line">
+            <span class="terminal-prompt">&nbsp;</span>
+            <span class="terminal-text"><span class="success">&#9679;</span> 3x faster than sequential. You approved every step.</span>
           </div>
         </div>
       </div>
@@ -690,160 +746,164 @@ footer {
     <div class="reveal">
       <span class="section-label">How It Works</span>
       <h2 class="section-title">Three phases. Full transparency.</h2>
-      <p class="section-subtitle">A sequential pipeline that keeps you in charge at every stage. No black boxes, no surprises.</p>
+      <p class="section-subtitle">A step-by-step pipeline that keeps you in charge at every stage. No black boxes, no surprises.</p>
     </div>
     <div class="steps-grid">
       <div class="steps-connector"></div>
       <div class="step-card reveal reveal-delay-1">
         <div class="step-number">1</div>
-        <h3 class="step-title">Design</h3>
+        <h3 class="step-title">Describe</h3>
         <span class="step-role">You lead</span>
-        <p class="step-desc">A wizard interviews you in plain language. No technical knowledge needed. It asks what you want, who it's for, and how it should work. You make every decision.</p>
+        <p class="step-desc">Tell LaunchHub your idea in plain English. No technical knowledge needed. It asks smart follow-up questions about your audience, features, and goals. You make every decision.</p>
       </div>
       <div class="step-card reveal reveal-delay-2">
         <div class="step-number">2</div>
         <h3 class="step-title">Plan</h3>
         <span class="step-role">AI + You</span>
-        <p class="step-desc">AI generates a complete blueprint: tech stack, folder structure, build steps, parallel tasks. You see everything before a single line is written. Drag, remove, or add steps.</p>
+        <p class="step-desc">AI generates a complete build plan: tech stack, folder structure, parallel tasks. You see everything before a single line is written. Drag, remove, or add steps.</p>
       </div>
       <div class="step-card reveal reveal-delay-3">
         <div class="step-number">3</div>
         <h3 class="step-title">Build</h3>
         <span class="step-role">AI executes, you supervise</span>
-        <p class="step-desc">AI builds step by step. Watch in real time. See every file created, every token spent. Pause anytime. Approve dangerous steps. Rollback to any point.</p>
+        <p class="step-desc">AI forks into parallel paths and builds simultaneously. Watch every file change in real time. See every token spent. Pause, approve, or rollback at any point.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== WHY AI HUB ====== -->
-<section class="why-section" id="why-aihub">
+<!-- ====== WHY LAUNCHHUB (USP) ====== -->
+<section class="usp-section" id="why-launchhub">
   <div class="container">
     <div class="reveal">
-      <span class="section-label">Why AI Hub</span>
-      <h2 class="section-title">Not another black box.</h2>
-      <p class="section-subtitle">See exactly how AI Hub compares to prompt-and-pray tools.</p>
+      <span class="section-label">Why LaunchHub</span>
+      <h2 class="section-title">The unfair advantage for<br>non-technical founders.</h2>
+      <p class="section-subtitle">Five things we do that nobody else does.</p>
     </div>
-    <div class="comparison-grid reveal reveal-delay-1">
-      <div class="comparison-row">
-        <div class="comparison-header them">Other tools</div>
-        <div class="comparison-header us">AI Hub</div>
+    <div class="usp-grid">
+      <div class="usp-card reveal reveal-delay-1">
+        <div class="usp-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 class="usp-title">Smart Token Management</h3>
+        <p class="usp-desc">Optimizes token usage by managing context drag, so you spend less on AI. Every dollar goes further because we use the right model for the right task.</p>
       </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          Prompt and hope for the best
+      <div class="usp-card reveal reveal-delay-2">
+        <div class="usp-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="M12 22v-6"/><path d="m21 3-9 9"/><path d="M3 3l9 9"/></svg>
         </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Design, review plan, build with oversight
-        </div>
+        <h3 class="usp-title">Parallel Development</h3>
+        <p class="usp-desc">Forks tasks into sidepaths, spins up multiple AI terminals simultaneously, then merges results. Build 3-5x faster than one-at-a-time tools.</p>
       </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          Black box &mdash; no visibility
+      <div class="usp-card reveal reveal-delay-3">
+        <div class="usp-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><circle cx="12" cy="12" r="4"/></svg>
         </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Glass box &mdash; see every step, token, file change
-        </div>
+        <h3 class="usp-title">Context Intelligence</h3>
+        <p class="usp-desc">Automatically compacts and manages context windows so AI stays sharp across long builds. No more degraded output halfway through your project.</p>
       </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          One big prompt, one big output
+      <div class="usp-card reveal reveal-delay-1">
+        <div class="usp-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Sequential pipeline with checkpoints
-        </div>
+        <h3 class="usp-title">Zero-Touch Delivery</h3>
+        <p class="usp-desc">Manual steps like buying domains, setting up payments, configuring DNS get outsourced to our ops team. You focus on the product, we handle the boring stuff.</p>
       </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          No cost visibility
+      <div class="usp-card reveal reveal-delay-2">
+        <div class="usp-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Real-time token tracking with cost per step
-        </div>
-      </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          Can't undo mistakes
-        </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          Per-step rollback with automatic backups
-        </div>
-      </div>
-      <div class="comparison-row">
-        <div class="comparison-cell them">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
-          Picks tech stack for you
-        </div>
-        <div class="comparison-cell us">
-          <span class="comparison-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-          You choose, AI recommends with explanations
-        </div>
+        <h3 class="usp-title">Glass Box, Not Black Box</h3>
+        <p class="usp-desc">See every step, every token, every file change in real time. Nothing happens behind your back. Full transparency from first line to deployment.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== FEATURES ====== -->
-<section class="features-section" id="features">
-  <div class="features-section-bg"></div>
+<!-- ====== HOW AI BUILDS FASTER ====== -->
+<section class="speed-section" id="speed">
+  <div class="speed-section-bg"></div>
   <div class="container" style="position:relative;">
     <div class="reveal">
-      <span class="section-label">Features</span>
-      <h2 class="section-title">Built for builders who care<br>about what's under the hood.</h2>
-      <p class="section-subtitle">Every feature designed around one principle: you should always know what's happening and be able to change it.</p>
+      <span class="section-label">How AI Builds Faster</span>
+      <h2 class="section-title">Why LaunchHub is 3-5x faster<br>than other AI tools.</h2>
+      <p class="section-subtitle">The secret is parallel execution and intelligent context management.</p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card reveal reveal-delay-1">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-        </div>
-        <h3 class="feature-title">Glass Box Transparency</h3>
-        <p class="feature-desc">See every file created, every decision made, every line of code written. Nothing happens behind your back.</p>
+    <div class="speed-comparison reveal reveal-delay-1">
+      <div class="speed-card traditional">
+        <div class="speed-card-label">Traditional AI Tools</div>
+        <div class="speed-card-title">One task at a time</div>
+        <ul class="speed-steps">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            1 AI, 1 task at a time &mdash; sequential bottleneck
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Context degrades as conversation grows
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Tokens wasted on repeated context
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Output quality drops after 20+ minutes
+          </li>
+        </ul>
+        <div class="speed-result">Slow &amp; degrading</div>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-        <h3 class="feature-title">Real-Time Token Tracking</h3>
-        <p class="feature-desc">Watch your costs in real time. See exactly how many tokens each step consumes and the dollar cost per operation.</p>
+      <div class="speed-card launchhub">
+        <div class="speed-card-label">LaunchHub</div>
+        <div class="speed-card-title">Parallel + context-managed</div>
+        <ul class="speed-steps">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Forks into parallel paths &mdash; multiple tasks at once
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Context managed per task &mdash; stays sharp
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Auto-compacts context, saves tokens
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Merges clean code at the end
+          </li>
+        </ul>
+        <div class="speed-result">3-5x faster</div>
       </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ====== IN DEVELOPMENT BANNER ====== -->
+<section class="dev-banner">
+  <div class="container">
+    <div class="dev-banner-box reveal">
+      <div class="dev-badge"><span class="dot"></span> Building in Public</div>
+      <h2 class="dev-banner-title">LaunchHub is in active development.<br>We're building in public and shipping fast.</h2>
+      <p class="dev-banner-subtitle">Reserve your early access deposit and get:</p>
+      <div class="dev-perks">
+        <div class="dev-perk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Lifetime discount locked in
         </div>
-        <h3 class="feature-title">Per-Step Rollback</h3>
-        <p class="feature-desc">Every step creates an automatic backup. Roll back to any point in the build with one click. Never lose progress.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-1">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="dev-perk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Priority access when we launch
         </div>
-        <h3 class="feature-title">Tech Stack Control</h3>
-        <p class="feature-desc">You choose the frameworks, databases, and tools. AI recommends options with clear explanations &mdash; but you decide.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>
+        <div class="dev-perk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Direct input on features
         </div>
-        <h3 class="feature-title">Deployment Config</h3>
-        <p class="feature-desc">AI generates deployment configurations for Vercel, Railway, Docker, and more. Production-ready from step one.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <div class="feature-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <div class="dev-perk">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Private community access
         </div>
-        <h3 class="feature-title">Safety Guardrails</h3>
-        <p class="feature-desc">Dangerous operations require your approval. Database migrations, API key usage, and sensitive operations are flagged before execution.</p>
       </div>
     </div>
   </div>
@@ -853,128 +913,114 @@ footer {
 <section class="pricing-section" id="pricing">
   <div class="container">
     <div class="reveal" style="text-align:center;">
-      <span class="section-label" style="justify-content:center;">Pricing</span>
-      <h2 class="section-title">Simple, transparent pricing.</h2>
-      <p class="section-subtitle" style="margin:0 auto;">No hidden fees. No token markups. Pay for the plan, bring your own API keys.</p>
+      <span class="section-label" style="justify-content:center;">Early Access Deposits</span>
+      <h2 class="section-title">Lock in your lifetime discount.</h2>
+      <p class="section-subtitle" style="margin:0 auto;">One-time deposits applied as credit when we launch. The earlier you join, the more you save.</p>
     </div>
     <div class="pricing-grid">
-      <!-- Solo -->
+      <!-- Starter Deposit -->
       <div class="price-card reveal reveal-delay-1">
-        <span class="price-tier">Solo</span>
+        <span class="price-tier">Starter Deposit</span>
         <div class="price-amount">
           <span class="price-currency">$</span>
-          <span class="price-value">49</span>
-          <span class="price-period">/mo</span>
+          <span class="price-value">10</span>
         </div>
-        <p class="price-tagline">Ship MVPs in hours, not weeks.</p>
+        <p class="price-tagline">Reserve your spot. Get 20% lifetime discount + early access.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Unlimited projects</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Full Design-Plan-Build pipeline</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Per-step rollback</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Real-time cost tracking</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Community support</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> 20% lifetime discount</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Early access to platform</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> $10 applied as launch credit</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Community access</li>
         </ul>
-        <a href="#" class="btn btn-secondary">Get Started</a>
+        <a href="#" class="btn btn-secondary">Reserve &mdash; $10</a>
+        <p class="price-credit">One-time deposit &mdash; applied as credit when we launch</p>
       </div>
-      <!-- Agency -->
+      <!-- Builder Deposit -->
       <div class="price-card popular reveal reveal-delay-2">
         <div class="popular-badge">Most Popular</div>
-        <span class="price-tier">Agency</span>
+        <div class="limited-badge">Limited Time</div>
+        <span class="price-tier">Builder Deposit</span>
         <div class="price-amount">
           <span class="price-currency">$</span>
-          <span class="price-value">199</span>
-          <span class="price-period">/mo</span>
+          <span class="price-value">20</span>
         </div>
-        <p class="price-tagline">5x output with the same team.</p>
+        <p class="price-tagline">Lock in 40% lifetime discount + priority queue + feature voting.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Everything in Solo</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> 5 team seats</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Parallel build pipelines</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Custom templates &amp; presets</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> White-label exports</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> 40% lifetime discount</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Priority access queue</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> $20 applied as launch credit</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Feature voting rights</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Community access</li>
         </ul>
-        <a href="#" class="btn btn-primary">Get Started</a>
+        <a href="#" class="btn btn-primary">Reserve &mdash; $20</a>
+        <p class="price-credit">One-time deposit &mdash; applied as credit when we launch</p>
       </div>
-      <!-- Enterprise -->
+      <!-- Founder Deposit -->
       <div class="price-card reveal reveal-delay-3">
-        <span class="price-tier">Enterprise</span>
+        <span class="price-tier">Founder Deposit</span>
         <div class="price-amount">
           <span class="price-currency">$</span>
-          <span class="price-value">999</span>
-          <span class="price-period">/mo</span>
+          <span class="price-value">50</span>
         </div>
-        <p class="price-tagline">Let business owners self-serve with guardrails.</p>
+        <p class="price-tagline">Lock in 60% lifetime discount + private Slack + direct line to founders + your name in credits.</p>
         <div class="price-divider"></div>
         <ul class="price-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Everything in Agency</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Unlimited team seats</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Admin guardrails &amp; permissions</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> SSO &amp; audit logs</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Dedicated account manager</li>
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Custom AI model routing</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> 60% lifetime discount</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Private Slack channel</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Direct line to founders</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> $50 applied as launch credit</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Your name in credits</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg> Feature voting + priority requests</li>
         </ul>
-        <a href="#" class="btn btn-secondary">Contact Sales</a>
+        <a href="#" class="btn btn-secondary">Reserve &mdash; $50</a>
+        <p class="price-credit">One-time deposit &mdash; applied as credit when we launch</p>
       </div>
     </div>
+    <p class="price-urgency reveal reveal-delay-4">Only 200 spots at these prices</p>
   </div>
 </section>
 
-<!-- ====== SOCIAL PROOF ====== -->
-<section class="social-proof" id="social-proof">
+<!-- ====== TESTIMONIALS ====== -->
+<section class="social-proof" id="testimonials">
   <div class="social-proof-bg"></div>
   <div class="container" style="position:relative;">
-    <div class="stats-row reveal">
-      <div class="stat-item">
-        <div class="stat-value"><span class="blue">2,400+</span></div>
-        <div class="stat-label">Builders in Early Access</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value"><span class="blue">18,000+</span></div>
-        <div class="stat-label">Projects Built</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value"><span class="blue">4.9</span>/5</div>
-        <div class="stat-label">Average Rating</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-value"><span class="blue">93%</span></div>
-        <div class="stat-label">Ship on First Try</div>
-      </div>
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label" style="justify-content:center;">What Builders Say</span>
+      <h2 class="section-title">From idea to launch &mdash;<br>without writing code.</h2>
     </div>
     <div class="testimonials-grid">
       <div class="testimonial-card reveal reveal-delay-1">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">&ldquo;I built a full SaaS dashboard in 3 hours. The step-by-step pipeline meant I actually understood what was built. First AI tool where I don't feel anxious about the output.&rdquo;</p>
+        <p class="testimonial-text">&ldquo;I had a SaaS idea for months but couldn't code. LaunchHub helped me build and ship it in a weekend. Seeing every step made me actually understand what was being built.&rdquo;</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">MK</div>
+          <div class="testimonial-avatar">AK</div>
           <div>
-            <div class="testimonial-name">Marcus K.</div>
-            <div class="testimonial-role">Indie Hacker</div>
+            <div class="testimonial-name">Alex K.</div>
+            <div class="testimonial-role">Solo Founder, NicheTrack</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-2">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">&ldquo;We replaced our prototyping workflow entirely. The cost tracking alone saved us hundreds in wasted API calls. The rollback feature is a game changer for client work.&rdquo;</p>
+        <p class="testimonial-text">&ldquo;As a business student, I never thought I'd launch a tech product. LaunchHub changed that. The parallel builds are insane &mdash; what took days now takes hours.&rdquo;</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">SR</div>
+          <div class="testimonial-avatar">PR</div>
           <div>
-            <div class="testimonial-name">Sarah R.</div>
-            <div class="testimonial-role">Agency Founder</div>
+            <div class="testimonial-name">Priya R.</div>
+            <div class="testimonial-role">Business Student &amp; Founder</div>
           </div>
         </div>
       </div>
       <div class="testimonial-card reveal reveal-delay-3">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="testimonial-text">&ldquo;Finally an AI tool that doesn't try to hide what it's doing. I can see every token, every file, every decision. It's like pair programming with a transparent AI.&rdquo;</p>
+        <p class="testimonial-text">&ldquo;The step-by-step approach taught me more about programming than any course. I went from zero to deploying my own app. Now I actually understand what my code does.&rdquo;</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">JL</div>
+          <div class="testimonial-avatar">DM</div>
           <div>
-            <div class="testimonial-name">James L.</div>
-            <div class="testimonial-role">Full-Stack Developer</div>
+            <div class="testimonial-name">David M.</div>
+            <div class="testimonial-role">Career Switcher, Ex-Marketing</div>
           </div>
         </div>
       </div>
@@ -986,14 +1032,14 @@ footer {
 <section class="cta-section">
   <div class="container">
     <div class="cta-box reveal">
-      <h2 class="section-title">Ready to build software<br>the right way?</h2>
-      <p class="section-subtitle">Join thousands of builders who ship faster &mdash; without giving up control.</p>
+      <h2 class="section-title">Your idea deserves to exist.<br>Reserve your spot today.</h2>
+      <p class="section-subtitle">Join early and lock in your lifetime discount before prices go up.</p>
       <div class="cta-actions">
         <a href="#pricing" class="btn btn-primary btn-large">
-          Start Building Free
+          Reserve Your Spot &mdash; $10
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a href="#how-it-works" class="btn btn-secondary btn-large">Watch Demo</a>
+        <a href="#pricing" class="btn btn-secondary btn-large">See All Deposit Tiers</a>
       </div>
     </div>
   </div>
@@ -1005,29 +1051,37 @@ footer {
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#" class="nav-brand">
-          <img src="icon.svg" alt="AI Hub icon">
-          <span>AI</span><span>Hub</span>
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="#2563EB"/>
+            <path d="M10 26V10l8 5-8 5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 18h8M18 13h6M18 23h4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span>Launch</span><span>Hub</span>
         </a>
-        <p>The first AI coding platform where you stay in control. Design visually, build with oversight.</p>
+        <p>Build your tech startup without writing code. AI builds step by step while you stay in control.</p>
         <div class="footer-social">
           <!-- TikTok -->
-          <a href="https://tiktok.com/@aihubdev" target="_blank" rel="noopener" aria-label="TikTok">
+          <a href="https://tiktok.com/@launchhubdev" target="_blank" rel="noopener" aria-label="TikTok">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15.2a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.98a8.22 8.22 0 0 0 4.76 1.52V7.05a4.84 4.84 0 0 1-1-.36z"/></svg>
           </a>
           <!-- Instagram -->
-          <a href="https://instagram.com/aihubdev" target="_blank" rel="noopener" aria-label="Instagram">
+          <a href="https://instagram.com/launchhubdev" target="_blank" rel="noopener" aria-label="Instagram">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
           <!-- YouTube -->
-          <a href="https://youtube.com/@aihubdev" target="_blank" rel="noopener" aria-label="YouTube">
+          <a href="https://youtube.com/@launchhubdev" target="_blank" rel="noopener" aria-label="YouTube">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.67 31.67 0 0 0 0 12a31.67 31.67 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.84.55 9.38.55 9.38.55s7.54 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.67 31.67 0 0 0 24 12a31.67 31.67 0 0 0-.5-5.81zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+          </a>
+          <!-- Twitter/X -->
+          <a href="https://x.com/launchhubdev" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
         </div>
       </div>
       <div>
         <h4 class="footer-col-title">Product</h4>
         <ul class="footer-links">
-          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#">Changelog</a></li>
           <li><a href="#">Roadmap</a></li>
@@ -1036,24 +1090,24 @@ footer {
       <div>
         <h4 class="footer-col-title">Resources</h4>
         <ul class="footer-links">
-          <li><a href="#">Documentation</a></li>
           <li><a href="#">Blog</a></li>
           <li><a href="#">Tutorials</a></li>
-          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">FAQ</a></li>
         </ul>
       </div>
       <div>
         <h4 class="footer-col-title">Company</h4>
         <ul class="footer-links">
           <li><a href="#">About</a></li>
-          <li><a href="#">Careers</a></li>
           <li><a href="#">Contact</a></li>
+          <li><a href="#">Careers</a></li>
           <li><a href="#">Brand Kit</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 AI Hub. All rights reserved.</span>
+      <span>&copy; 2026 LaunchHub. All rights reserved.</span>
       <div class="footer-bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -1088,7 +1142,6 @@ document.querySelectorAll('#navLinks a').forEach(link => {
 });
 
 // Navbar background on scroll
-let lastScroll = 0;
 window.addEventListener('scroll', () => {
   const nav = document.querySelector('nav');
   if (window.scrollY > 100) {
