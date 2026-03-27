@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LaunchHub — See It In Action</title>
+<meta name="description" content="Watch LaunchHub build real products step by step. 3 real use cases with animated walkthroughs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0F172A;
+  color: #E2E8F0;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code, .mono { font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ========== UTILITY ========== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #60A5FA; margin-bottom: 16px;
+}
+.section-label::before {
+  content: ''; display: block; width: 24px; height: 2px;
+  background: linear-gradient(90deg, #2563EB, #60A5FA); border-radius: 2px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes progressFill {
+  from { width: 0; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(96, 165, 250, 0); }
+}
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ========== BUTTONS ========== */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 12px;
+  font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600;
+  border: none; cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary {
+  background: linear-gradient(135deg, #2563EB, #1E40AF);
+  color: #fff; box-shadow: 0 4px 16px rgba(37, 99, 235, 0.25);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15), 0 8px 32px rgba(37, 99, 235, 0.35);
+}
+.btn-secondary {
+  background: rgba(255,255,255,0.05); color: #E2E8F0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  background: transparent; color: #94A3B8;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.btn-ghost:hover { color: #E2E8F0; border-color: rgba(255,255,255,0.15); }
+.btn-large { padding: 18px 36px; font-size: 1.05rem; border-radius: 14px; }
+.btn-sm { padding: 8px 16px; font-size: 0.8rem; border-radius: 8px; }
+
+/* ========== NAV ========== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; }
+.nav-brand svg { width: 36px; height: 36px; }
+.nav-brand .brand-launch { color: #2563EB; }
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: #94A3B8; transition: color 0.2s; }
+.nav-links a:hover { color: #E2E8F0; }
+.nav-cta .btn { padding: 10px 22px; font-size: 0.875rem; }
+.nav-mobile-toggle {
+  display: none; background: none; border: none; cursor: pointer;
+  color: #E2E8F0; padding: 8px;
+}
+.nav-mobile-toggle svg { width: 24px; height: 24px; }
+
+/* ========== HERO ========== */
+.hero {
+  position: relative; min-height: 70vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 120px 24px 60px; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 70% 60%, rgba(30, 64, 175, 0.08) 0%, transparent 50%);
+  animation: gradientShift 12s ease infinite;
+  background-size: 200% 200%;
+}
+.hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+}
+.hero-content {
+  position: relative; z-index: 1; text-align: center;
+  max-width: 860px; margin: 0 auto;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: 100px;
+  background: rgba(37, 99, 235, 0.1); border: 1px solid rgba(37, 99, 235, 0.2);
+  font-size: 0.8rem; font-weight: 600; color: #60A5FA;
+  margin-bottom: 32px; animation: fadeIn 0.8s ease both;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px; border-radius: 50%; background: #60A5FA;
+  animation: pulse 2s ease infinite;
+}
+.hero h1 {
+  font-size: clamp(2.75rem, 6vw, 4.5rem); font-weight: 900;
+  letter-spacing: -0.04em; line-height: 1.08;
+  color: #F8FAFC; margin-bottom: 24px;
+  animation: fadeInUp 0.8s ease both 0.2s; opacity: 0;
+}
+.hero h1 .gradient-text {
+  background: linear-gradient(135deg, #60A5FA, #2563EB, #818CF8);
+  background-size: 200% 200%;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; animation: gradientShift 6s ease infinite;
+}
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.25rem); color: #94A3B8;
+  max-width: 600px; margin: 0 auto 48px; line-height: 1.7;
+  animation: fadeInUp 0.8s ease both 0.4s; opacity: 0;
+}
+
+/* ========== USE CASE JUMP CARDS ========== */
+.jump-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  max-width: 900px; margin: 0 auto;
+  animation: fadeInUp 0.8s ease both 0.6s; opacity: 0;
+}
+.jump-card {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; padding: 28px 24px;
+  cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left; position: relative; overflow: hidden;
+}
+.jump-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.jump-card:hover {
+  border-color: rgba(37, 99, 235, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+}
+.jump-card:hover::before { opacity: 1; }
+.jump-card-num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+  color: #2563EB; font-weight: 700; margin-bottom: 12px;
+  position: relative;
+}
+.jump-card-title {
+  font-size: 1rem; font-weight: 700; color: #F8FAFC;
+  margin-bottom: 8px; position: relative;
+}
+.jump-card-desc {
+  font-size: 0.85rem; color: #64748B; line-height: 1.5;
+  position: relative;
+}
+
+/* ========== USE CASE SECTIONS ========== */
+.use-case {
+  padding: 100px 0; position: relative;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.use-case-header {
+  margin-bottom: 56px;
+}
+.audience-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 0.75rem; font-weight: 600;
+  margin-bottom: 20px;
+}
+.badge-entrepreneur { background: rgba(37, 99, 235, 0.12); color: #60A5FA; border: 1px solid rgba(37, 99, 235, 0.2); }
+.badge-real { background: rgba(74, 222, 128, 0.12); color: #4ADE80; border: 1px solid rgba(74, 222, 128, 0.2); }
+.badge-agency { background: rgba(251, 191, 36, 0.12); color: #FBBF24; border: 1px solid rgba(251, 191, 36, 0.2); }
+.use-case-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1.15; color: #F8FAFC;
+  margin-bottom: 12px;
+}
+.use-case-note {
+  font-size: 0.9rem; color: #64748B; font-style: italic;
+}
+
+/* ========== PHASE NAVIGATION ========== */
+.phase-nav {
+  display: flex; gap: 4px; margin-bottom: 32px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 4px;
+  width: fit-content;
+}
+.phase-tab {
+  padding: 8px 18px; border-radius: 8px;
+  font-size: 0.8rem; font-weight: 600; color: #64748B;
+  cursor: pointer; transition: all 0.25s;
+  border: none; background: none; font-family: inherit;
+}
+.phase-tab:hover { color: #94A3B8; }
+.phase-tab.active {
+  background: rgba(37, 99, 235, 0.15); color: #60A5FA;
+}
+
+/* ========== SIMULATION WINDOW ========== */
+.sim-window {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03) inset;
+}
+.sim-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.sim-dot { width: 12px; height: 12px; border-radius: 50%; }
+.sim-dot:nth-child(1) { background: #EF4444; }
+.sim-dot:nth-child(2) { background: #EAB308; }
+.sim-dot:nth-child(3) { background: #22C55E; }
+.sim-title {
+  flex: 1; text-align: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+  color: #64748B;
+}
+.sim-body {
+  padding: 28px 28px 32px;
+  min-height: 340px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  position: relative;
+}
+
+/* ========== PHASE PANELS ========== */
+.phase-panel {
+  display: none;
+}
+.phase-panel.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ========== CHAT WIZARD ========== */
+.chat-line {
+  display: flex; gap: 12px; margin-bottom: 16px;
+  opacity: 0; transform: translateY(12px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.chat-line.visible { opacity: 1; transform: translateY(0); }
+.chat-sender {
+  font-weight: 700; white-space: nowrap; flex-shrink: 0;
+}
+.chat-sender.bot { color: #60A5FA; }
+.chat-sender.user { color: #4ADE80; }
+.chat-msg { color: #E2E8F0; line-height: 1.6; }
+.chat-msg .typing-cursor {
+  display: inline-block; width: 2px; height: 1em;
+  background: #60A5FA; margin-left: 4px;
+  animation: blink 0.8s infinite; vertical-align: text-bottom;
+}
+.chat-generating {
+  display: flex; align-items: center; gap: 8px;
+  color: #60A5FA; font-weight: 600;
+  opacity: 0; transform: translateY(12px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.chat-generating.visible { opacity: 1; transform: translateY(0); }
+.spinner-dots { display: flex; gap: 4px; }
+.spinner-dots span {
+  width: 6px; height: 6px; border-radius: 50%; background: #60A5FA;
+  animation: pulse 1.2s ease infinite;
+}
+.spinner-dots span:nth-child(2) { animation-delay: 0.2s; }
+.spinner-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ========== PIPELINE STEPS ========== */
+.pipeline-step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0;
+  opacity: 0; transform: translateX(-16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pipeline-step.visible { opacity: 1; transform: translateX(0); }
+.step-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; flex-shrink: 0;
+}
+.step-done { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+.step-running { background: rgba(96, 165, 250, 0.15); color: #60A5FA; animation: pulseGlow 2s infinite; }
+.step-pending { background: rgba(100, 116, 139, 0.15); color: #64748B; }
+.step-label { color: #E2E8F0; flex: 1; }
+.step-label.dim { color: #64748B; }
+.step-meta { color: #64748B; font-size: 0.75rem; white-space: nowrap; }
+.step-meta .cost { color: #FBBF24; }
+.step-meta .time { color: #94A3B8; }
+.pipeline-sidepath {
+  padding-left: 36px; margin-top: -4px;
+  opacity: 0; transform: translateX(-16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pipeline-sidepath.visible { opacity: 1; transform: translateX(0); }
+.sidepath-line {
+  display: flex; align-items: center; gap: 8px;
+  padding: 4px 0; color: #64748B; font-size: 0.8rem;
+}
+.sidepath-line .branch { color: #475569; }
+
+/* ========== AGENT TERMINAL ========== */
+.agent-line {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 0; color: #94A3B8;
+  opacity: 0; transform: translateX(-12px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.agent-line.visible { opacity: 1; transform: translateX(0); }
+.agent-tag {
+  padding: 2px 8px; border-radius: 4px; font-size: 0.75rem;
+  font-weight: 600; white-space: nowrap;
+}
+.agent-tag-1 { background: rgba(96, 165, 250, 0.15); color: #60A5FA; }
+.agent-tag-2 { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+.agent-tag-3 { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+.agent-tag-4 { background: rgba(167, 139, 250, 0.15); color: #A78BFA; }
+.agent-tag-5 { background: rgba(244, 114, 182, 0.15); color: #F472B6; }
+.agent-tag-6 { background: rgba(34, 211, 238, 0.15); color: #22D3EE; }
+.agent-text { color: #E2E8F0; }
+.agent-tokens { color: #64748B; font-size: 0.8rem; margin-left: auto; white-space: nowrap; }
+
+.progress-bar-wrap {
+  margin: 20px 0 12px; height: 6px; border-radius: 3px;
+  background: rgba(255,255,255,0.06); overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: linear-gradient(90deg, #2563EB, #60A5FA);
+  width: 0; transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.progress-stats {
+  display: flex; gap: 24px; font-size: 0.8rem; color: #64748B;
+  flex-wrap: wrap;
+}
+.progress-stats .val { color: #E2E8F0; font-weight: 600; }
+.progress-stats .cost-val { color: #FBBF24; font-weight: 600; }
+
+/* ========== ACTION QUEUE ========== */
+.aq-header {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+  opacity: 0; transition: all 0.5s ease;
+}
+.aq-header.visible { opacity: 1; }
+.aq-icon { font-size: 1.1rem; }
+.aq-title { font-size: 1rem; font-weight: 700; color: #F8FAFC; }
+.aq-count {
+  padding: 2px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+  background: rgba(251, 191, 36, 0.15); color: #FBBF24;
+}
+.aq-item {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 18px 20px;
+  margin-bottom: 12px;
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.aq-item.visible { opacity: 1; transform: translateY(0); }
+.aq-item-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.aq-item-name { font-weight: 600; color: #E2E8F0; font-size: 0.9rem; }
+.aq-item-price { color: #FBBF24; font-weight: 600; font-size: 0.85rem; }
+.aq-item-steps { font-size: 0.8rem; color: #64748B; margin-bottom: 12px; }
+.aq-item-actions { display: flex; gap: 8px; }
+.aq-btn {
+  padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
+  border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+.aq-btn-diy { background: rgba(255,255,255,0.06); color: #94A3B8; }
+.aq-btn-diy:hover { background: rgba(255,255,255,0.1); color: #E2E8F0; }
+.aq-btn-outsource {
+  background: rgba(37, 99, 235, 0.15); color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+.aq-btn-outsource:hover { background: rgba(37, 99, 235, 0.25); }
+.aq-status {
+  width: 8px; height: 8px; border-radius: 50%;
+  display: inline-block; margin-right: 8px;
+}
+.aq-status-active { background: #60A5FA; animation: pulse 2s infinite; }
+.aq-status-done { background: #4ADE80; }
+.aq-status-pending { background: #64748B; }
+
+/* ========== COMPLETION ========== */
+.completion-card {
+  text-align: center; padding: 20px 0;
+  opacity: 0; transform: scale(0.95);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.completion-card.visible { opacity: 1; transform: scale(1); }
+.completion-check {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(74, 222, 128, 0.12);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px; font-size: 1.5rem;
+  border: 2px solid rgba(74, 222, 128, 0.3);
+}
+.completion-title {
+  font-size: 1.5rem; font-weight: 800; color: #4ADE80; margin-bottom: 24px;
+}
+.completion-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px; max-width: 560px; margin: 0 auto 24px;
+}
+.comp-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 16px;
+}
+.comp-stat-val {
+  font-size: 1.25rem; font-weight: 800; color: #F8FAFC;
+  font-family: 'JetBrains Mono', monospace;
+}
+.comp-stat-val.green { color: #4ADE80; }
+.comp-stat-val.blue { color: #60A5FA; }
+.comp-stat-val.yellow { color: #FBBF24; }
+.comp-stat-label { font-size: 0.75rem; color: #64748B; margin-top: 4px; }
+.completion-url {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 8px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  color: #4ADE80; font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem; font-weight: 600;
+}
+
+/* ========== MULTI-PROJECT DASHBOARD ========== */
+.project-cards {
+  display: grid; gap: 12px;
+}
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 18px 20px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 8px; align-items: center;
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.project-card.visible { opacity: 1; transform: translateY(0); }
+.project-client { font-weight: 700; color: #F8FAFC; font-size: 0.95rem; }
+.project-desc { font-size: 0.85rem; color: #94A3B8; grid-column: 1; }
+.project-status {
+  font-size: 0.75rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 100px;
+  text-align: center;
+}
+.status-building { background: rgba(96, 165, 250, 0.12); color: #60A5FA; }
+.status-testing { background: rgba(74, 222, 128, 0.12); color: #4ADE80; }
+.status-queued { background: rgba(100, 116, 139, 0.12); color: #64748B; }
+.project-progress {
+  grid-column: 1 / -1;
+  display: flex; align-items: center; gap: 12px;
+}
+.project-bar {
+  flex: 1; height: 4px; border-radius: 2px;
+  background: rgba(255,255,255,0.06); overflow: hidden;
+}
+.project-bar-fill {
+  height: 100%; border-radius: 2px;
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fill-blue { background: linear-gradient(90deg, #2563EB, #60A5FA); }
+.fill-green { background: linear-gradient(90deg, #16A34A, #4ADE80); }
+.fill-gray { background: #475569; }
+.project-pct { font-size: 0.8rem; font-weight: 600; color: #94A3B8; min-width: 36px; }
+.project-cost { font-size: 0.85rem; font-weight: 600; color: #FBBF24; text-align: right; }
+
+/* ========== BUILD ALL BUTTON ========== */
+.build-all-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 32px; border-radius: 12px;
+  background: linear-gradient(135deg, #2563EB, #1E40AF);
+  color: #fff; font-weight: 700; font-size: 0.95rem;
+  border: none; cursor: pointer; margin-bottom: 24px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 4px 24px rgba(37, 99, 235, 0.3);
+  opacity: 0; transition: all 0.5s ease;
+}
+.build-all-btn.visible { opacity: 1; }
+.build-all-btn.running {
+  background: linear-gradient(135deg, #16A34A, #15803D);
+  box-shadow: 0 4px 24px rgba(22, 163, 74, 0.3);
+}
+
+/* ========== COST TABLE ========== */
+.cost-table {
+  width: 100%;
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cost-table.visible { opacity: 1; transform: translateY(0); }
+.cost-table-header {
+  font-size: 1rem; font-weight: 700; color: #F8FAFC;
+  padding-bottom: 16px; margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-family: 'Inter', sans-serif;
+}
+.cost-row {
+  display: grid; grid-template-columns: 1.5fr 0.8fr 0.8fr 0.8fr;
+  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+  font-size: 0.85rem;
+}
+.cost-row.total {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none; font-weight: 700; color: #F8FAFC; padding-top: 16px;
+}
+.cost-row.highlight {
+  border-bottom: none; padding-top: 8px;
+}
+.cost-name { color: #E2E8F0; }
+.cost-val { color: #FBBF24; font-weight: 600; text-align: right; }
+.cost-steps { color: #94A3B8; text-align: right; }
+.cost-time { color: #64748B; text-align: right; }
+.cost-row.outsource .cost-name { color: #94A3B8; }
+.cost-row.invoice .cost-name { color: #F8FAFC; font-weight: 700; }
+.cost-row.invoice .cost-val { color: #4ADE80; font-size: 1rem; }
+.margin-row .cost-name { color: #4ADE80; font-weight: 600; }
+.margin-row .cost-val { color: #4ADE80; }
+
+/* ========== OUTSOURCE LIST ========== */
+.outsource-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  opacity: 0; transform: translateX(-12px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.outsource-item.visible { opacity: 1; transform: translateX(0); }
+.outsource-item:last-child { border-bottom: none; }
+.outsource-text { flex: 1; color: #E2E8F0; font-size: 0.85rem; }
+.outsource-text .client-tag { color: #60A5FA; font-weight: 600; }
+.outsource-price { color: #FBBF24; font-weight: 600; font-size: 0.85rem; white-space: nowrap; }
+.outsource-badge {
+  font-size: 0.7rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 4px; white-space: nowrap;
+}
+.outsource-badge.in-progress { background: rgba(96, 165, 250, 0.15); color: #60A5FA; }
+
+.outsource-summary {
+  margin-top: 16px; padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px; font-size: 0.85rem; color: #94A3B8;
+  opacity: 0; transition: all 0.5s ease;
+}
+.outsource-summary.visible { opacity: 1; }
+
+/* ========== SIDEPATH PARALLEL ========== */
+.sidepath-grid {
+  display: grid; gap: 10px;
+}
+.sidepath-card {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  opacity: 0; transform: translateX(-16px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sidepath-card.visible { opacity: 1; transform: translateX(0); }
+.sp-branch { color: #475569; font-size: 0.85rem; }
+.sp-name { color: #E2E8F0; font-weight: 600; flex: 1; font-size: 0.85rem; }
+.sp-meta { color: #64748B; font-size: 0.8rem; white-space: nowrap; }
+.sp-agent { color: #60A5FA; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+
+.sidepath-stats {
+  display: flex; gap: 24px; margin-top: 16px; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.85rem; color: #64748B;
+  opacity: 0; transition: all 0.5s ease;
+}
+.sidepath-stats.visible { opacity: 1; }
+.sidepath-stats .val { color: #60A5FA; font-weight: 600; }
+
+/* ========== CTA SECTION ========== */
+.cta-section {
+  padding: 120px 0; text-align: center;
+  position: relative;
+}
+.cta-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(37, 99, 235, 0.08), transparent);
+}
+.cta-content { position: relative; z-index: 1; }
+.cta-title {
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 900;
+  letter-spacing: -0.03em; color: #F8FAFC; margin-bottom: 16px;
+}
+.cta-subtitle {
+  font-size: 1.1rem; color: #94A3B8; max-width: 500px;
+  margin: 0 auto 40px; line-height: 1.7;
+}
+.cta-buttons {
+  display: flex; align-items: center; justify-content: center;
+  gap: 16px; flex-wrap: wrap;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.04);
+  text-align: center;
+}
+footer p { font-size: 0.85rem; color: #475569; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .jump-cards { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+  .sim-body { padding: 20px 16px 24px; font-size: 0.8rem; }
+  .phase-nav { overflow-x: auto; width: 100%; }
+  .completion-stats { grid-template-columns: repeat(2, 1fr); }
+  .cost-row { grid-template-columns: 1.2fr 0.8fr 0.6fr 0.6fr; font-size: 0.8rem; }
+  .project-card { grid-template-columns: 1fr; }
+  .project-status { justify-self: start; }
+  .project-cost { text-align: left; }
+  .cta-buttons { flex-direction: column; }
+  .aq-item-top { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+
+@media (max-width: 480px) {
+  .phase-tab { padding: 6px 12px; font-size: 0.75rem; }
+  .sim-body { min-height: 280px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 36 36" fill="none">
+        <rect width="36" height="36" rx="8" fill="#2563EB" fill-opacity="0.15"/>
+        <path d="M10 24V12l8 4v8l-8 4zm8-4l8-4V8l-8 4v8z" fill="#2563EB"/>
+        <path d="M18 20l8-4V8l-8 4v8z" fill="#60A5FA" opacity="0.6"/>
+      </svg>
+      <span><span class="brand-launch">Launch</span>Hub</span>
+    </a>
+    <div class="nav-links">
+      <a href="#use-cases">Use Cases</a>
+      <a href="index.html#how">How It Works</a>
+      <a href="index.html#pricing">Pricing</a>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html#pricing" class="btn btn-primary">Get Started</a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Live Demos</div>
+    <h1>See LaunchHub <span class="gradient-text">in Action</span></h1>
+    <p class="hero-subtitle">Real use cases. Real builds. Watch AI build complete products step by step.</p>
+    <div class="jump-cards" id="use-cases">
+      <a href="#uc1" class="jump-card">
+        <div class="jump-card-num">01</div>
+        <div class="jump-card-title">Solo Founder SaaS</div>
+        <div class="jump-card-desc">Build a subscription analytics dashboard in a weekend</div>
+      </a>
+      <a href="#uc2" class="jump-card">
+        <div class="jump-card-num">02</div>
+        <div class="jump-card-title">RuneCraft Plugin</div>
+        <div class="jump-card-desc">A real Minecraft plugin built with LaunchHub</div>
+      </a>
+      <a href="#uc3" class="jump-card">
+        <div class="jump-card-num">03</div>
+        <div class="jump-card-title">Agency Multi-Client</div>
+        <div class="jump-card-desc">Manage 3 client projects with parallel builds</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ USE CASE 1 ═══════════════════════════════════════════ -->
+<section class="use-case" id="uc1">
+  <div class="container">
+    <div class="use-case-header reveal">
+      <div class="audience-badge badge-entrepreneur">For Entrepreneurs</div>
+      <h2 class="use-case-title">Solo Founder Builds a SaaS in a Weekend</h2>
+    </div>
+
+    <div class="phase-nav reveal reveal-delay-1">
+      <button class="phase-tab active" data-uc="1" data-phase="1">Design</button>
+      <button class="phase-tab" data-uc="1" data-phase="2">Plan</button>
+      <button class="phase-tab" data-uc="1" data-phase="3">Build</button>
+      <button class="phase-tab" data-uc="1" data-phase="4">Actions</button>
+      <button class="phase-tab" data-uc="1" data-phase="5">Done</button>
+    </div>
+
+    <div class="sim-window reveal reveal-delay-2" data-uc="1">
+      <div class="sim-header">
+        <span class="sim-dot"></span><span class="sim-dot"></span><span class="sim-dot"></span>
+        <span class="sim-title">launchhub — saas-metrics-builder</span>
+      </div>
+      <div class="sim-body">
+        <!-- Phase 1: Chat Wizard -->
+        <div class="phase-panel active" data-uc="1" data-phase="1">
+          <div class="chat-line" data-delay="0">
+            <span class="chat-sender bot">LaunchHub:</span>
+            <span class="chat-msg">What do you want to build?</span>
+          </div>
+          <div class="chat-line" data-delay="800">
+            <span class="chat-sender user">You:</span>
+            <span class="chat-msg">A subscription analytics dashboard for SaaS founders</span>
+          </div>
+          <div class="chat-line" data-delay="2000">
+            <span class="chat-sender bot">LaunchHub:</span>
+            <span class="chat-msg">Who is it for?</span>
+          </div>
+          <div class="chat-line" data-delay="3000">
+            <span class="chat-sender user">You:</span>
+            <span class="chat-msg">SaaS founders who want to track MRR, churn, and growth</span>
+          </div>
+          <div class="chat-line" data-delay="4500">
+            <span class="chat-sender bot">LaunchHub:</span>
+            <span class="chat-msg">Got it. Generating your build plan...</span>
+          </div>
+          <div class="chat-generating" data-delay="5200">
+            <div class="spinner-dots"><span></span><span></span><span></span></div>
+            <span>Analyzing requirements...</span>
+          </div>
+        </div>
+
+        <!-- Phase 2: Pipeline -->
+        <div class="phase-panel" data-uc="1" data-phase="2">
+          <div class="pipeline-step" data-delay="0">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Step 1: Project scaffold &amp; database</span>
+          </div>
+          <div class="pipeline-step" data-delay="400">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Step 2: Auth system (OAuth + email)</span>
+          </div>
+          <div class="pipeline-step" data-delay="800">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Step 3: Stripe integration &amp; webhook handler</span>
+          </div>
+          <div class="pipeline-step" data-delay="1200">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Step 4: Dashboard UI with charts</span>
+          </div>
+          <div class="pipeline-step" data-delay="1600">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Step 5: MRR calculation engine</span>
+          </div>
+          <div class="pipeline-step" data-delay="2000">
+            <span class="step-icon step-running">&#9654;</span>
+            <span class="step-label">Step 6: Churn prediction model</span>
+            <span class="step-meta">Running...</span>
+          </div>
+          <div class="pipeline-sidepath" data-delay="2600">
+            <div class="sidepath-line"><span class="branch">&#9500;&#9472;&#9472;</span> Sidepath A: Email notifications</div>
+            <div class="sidepath-line"><span class="branch">&#9500;&#9472;&#9472;</span> Sidepath B: API endpoints</div>
+            <div class="sidepath-line"><span class="branch">&#9492;&#9472;&#9472;</span> Sidepath C: Landing page</div>
+          </div>
+        </div>
+
+        <!-- Phase 3: Build (Agents) -->
+        <div class="phase-panel" data-uc="1" data-phase="3">
+          <div class="agent-line" data-delay="0">
+            <span class="agent-tag agent-tag-1">Agent 1</span>
+            <span class="agent-text">Building churn prediction...</span>
+            <span class="agent-tokens">847 tokens</span>
+          </div>
+          <div class="agent-line" data-delay="500">
+            <span class="agent-tag agent-tag-2">Agent 2</span>
+            <span class="agent-text">Email notification system...</span>
+            <span class="agent-tokens">623 tokens</span>
+          </div>
+          <div class="agent-line" data-delay="1000">
+            <span class="agent-tag agent-tag-3">Agent 3</span>
+            <span class="agent-text">REST API endpoints...</span>
+            <span class="agent-tokens">441 tokens</span>
+          </div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" data-target="67"></div>
+          </div>
+          <div class="progress-stats">
+            <span>Tokens: <span class="val" data-count="12847">0</span></span>
+            <span>Cost: <span class="cost-val" data-count="0.38" data-prefix="$">$0.00</span></span>
+            <span>Time: <span class="val">4m 12s</span></span>
+          </div>
+        </div>
+
+        <!-- Phase 4: Action Queue -->
+        <div class="phase-panel" data-uc="1" data-phase="4">
+          <div class="aq-header" data-delay="0">
+            <span class="aq-icon">&#9889;</span>
+            <span class="aq-title">Action Queue</span>
+            <span class="aq-count">3 pending</span>
+          </div>
+          <div class="aq-item" data-delay="300">
+            <div class="aq-item-top">
+              <span class="aq-item-name"><span class="aq-status aq-status-active"></span>Purchase domain (saas-metrics.io)</span>
+              <span class="aq-item-price">$12/yr</span>
+            </div>
+            <div class="aq-item-steps">&#8594; 4 steps: Go to Namecheap &#8594; Search &#8594; Buy &#8594; Configure DNS</div>
+            <div class="aq-item-actions">
+              <button class="aq-btn aq-btn-diy">Do It Myself</button>
+              <button class="aq-btn aq-btn-outsource">Outsource $8</button>
+            </div>
+          </div>
+          <div class="aq-item" data-delay="600">
+            <div class="aq-item-top">
+              <span class="aq-item-name"><span class="aq-status aq-status-pending"></span>Set up Stripe account</span>
+              <span class="aq-item-price">Free</span>
+            </div>
+            <div class="aq-item-steps">&#8594; 6 steps: Create account &#8594; Verify &#8594; Add bank &#8594; Get API keys</div>
+            <div class="aq-item-actions">
+              <button class="aq-btn aq-btn-diy">Do It Myself</button>
+              <button class="aq-btn aq-btn-outsource">Outsource $20</button>
+            </div>
+          </div>
+          <div class="aq-item" data-delay="900">
+            <div class="aq-item-top">
+              <span class="aq-item-name"><span class="aq-status aq-status-pending"></span>Configure SendGrid for emails</span>
+              <span class="aq-item-price">Free tier</span>
+            </div>
+            <div class="aq-item-steps">&#8594; 3 steps: Create account &#8594; Verify domain &#8594; Get API key</div>
+            <div class="aq-item-actions">
+              <button class="aq-btn aq-btn-diy">Do It Myself</button>
+              <button class="aq-btn aq-btn-outsource">Outsource $5</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 5: Done -->
+        <div class="phase-panel" data-uc="1" data-phase="5">
+          <div class="completion-card" data-delay="0">
+            <div class="completion-check">&#10003;</div>
+            <div class="completion-title">Build Complete!</div>
+            <div class="completion-stats">
+              <div class="comp-stat">
+                <div class="comp-stat-val blue">47 min</div>
+                <div class="comp-stat-label">Duration</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val yellow">$2.14</div>
+                <div class="comp-stat-label">Total cost</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val">89</div>
+                <div class="comp-stat-label">Files created</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val green">$33</div>
+                <div class="comp-stat-label">3 actions outsourced</div>
+              </div>
+            </div>
+            <div class="completion-url">&#127760; saas-metrics.io</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ USE CASE 2 ═══════════════════════════════════════════ -->
+<section class="use-case" id="uc2">
+  <div class="container">
+    <div class="use-case-header reveal">
+      <div class="audience-badge badge-real">Real Project — RuneCraft</div>
+      <h2 class="use-case-title">Dev Team Ships a Minecraft Plugin</h2>
+      <p class="use-case-note">This is an actual project built with LaunchHub</p>
+    </div>
+
+    <div class="phase-nav reveal reveal-delay-1">
+      <button class="phase-tab active" data-uc="2" data-phase="1">Schematic</button>
+      <button class="phase-tab" data-uc="2" data-phase="2">Pipeline</button>
+      <button class="phase-tab" data-uc="2" data-phase="3">Sidepaths</button>
+      <button class="phase-tab" data-uc="2" data-phase="4">Results</button>
+    </div>
+
+    <div class="sim-window reveal reveal-delay-2" data-uc="2">
+      <div class="sim-header">
+        <span class="sim-dot"></span><span class="sim-dot"></span><span class="sim-dot"></span>
+        <span class="sim-title">launchhub — runecraft-builder</span>
+      </div>
+      <div class="sim-body">
+        <!-- Phase 1: Schematic -->
+        <div class="phase-panel active" data-uc="2" data-phase="1">
+          <div class="chat-line" data-delay="0">
+            <span class="chat-sender bot" style="color:#4ADE80">RuneCraft</span>
+            <span class="chat-msg" style="color:#94A3B8">Runescape mechanics reimagined in Minecraft</span>
+          </div>
+          <div class="chat-line" data-delay="600">
+            <span class="chat-sender bot" style="color:#64748B">Target:</span>
+            <span class="chat-msg">Paper MC 1.20.4 plugin</span>
+          </div>
+          <div style="margin-top:16px; display:grid; gap:8px;">
+            <div class="pipeline-step" data-delay="1000">
+              <span class="step-icon step-done" style="background:rgba(74,222,128,0.1);font-size:0.65rem">&#9632;</span>
+              <span class="step-label">Full skill system (28 skills)</span>
+            </div>
+            <div class="pipeline-step" data-delay="1400">
+              <span class="step-icon step-done" style="background:rgba(74,222,128,0.1);font-size:0.65rem">&#9632;</span>
+              <span class="step-label">Combat with special attacks</span>
+            </div>
+            <div class="pipeline-step" data-delay="1800">
+              <span class="step-icon step-done" style="background:rgba(74,222,128,0.1);font-size:0.65rem">&#9632;</span>
+              <span class="step-label">Boss fights (KBD, Giant Mole, Jad)</span>
+            </div>
+            <div class="pipeline-step" data-delay="2200">
+              <span class="step-icon step-done" style="background:rgba(74,222,128,0.1);font-size:0.65rem">&#9632;</span>
+              <span class="step-label">Quest system with dialogue trees</span>
+            </div>
+            <div class="pipeline-step" data-delay="2600">
+              <span class="step-icon step-done" style="background:rgba(74,222,128,0.1);font-size:0.65rem">&#9632;</span>
+              <span class="step-label">Player bank &amp; economy</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2: Pipeline -->
+        <div class="phase-panel" data-uc="2" data-phase="2">
+          <div class="pipeline-step" data-delay="0">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Project Scaffold &amp; Database Layer</span>
+            <span class="step-meta"><span class="time">715s</span> &middot; <span class="cost">$1.26</span></span>
+          </div>
+          <div class="pipeline-step" data-delay="300">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Skill System Core (28 skills)</span>
+            <span class="step-meta"><span class="time">340s</span> &middot; <span class="cost">$1.31</span></span>
+          </div>
+          <div class="pipeline-step" data-delay="600">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Combat System &amp; Equipment</span>
+            <span class="step-meta"><span class="time">162s</span> &middot; <span class="cost">$0.62</span></span>
+          </div>
+          <div class="pipeline-step" data-delay="900">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">World Building &amp; Regions</span>
+            <span class="step-meta"><span class="time">580s</span> &middot; <span class="cost">$2.12</span></span>
+          </div>
+          <div class="pipeline-step" data-delay="1200">
+            <span class="step-icon step-done">&#10003;</span>
+            <span class="step-label">Quest System &amp; Dialogue Trees</span>
+            <span class="step-meta"><span class="time">566s</span> &middot; <span class="cost">$2.65</span></span>
+          </div>
+          <div class="pipeline-step" data-delay="1500">
+            <span class="step-icon step-running">&#9654;</span>
+            <span class="step-label">Boss System (KBD, Mole, Jad)</span>
+            <span class="step-meta" style="color:#60A5FA">Running...</span>
+          </div>
+          <div class="pipeline-step" data-delay="1800">
+            <span class="step-icon step-pending">&#9679;</span>
+            <span class="step-label dim">Player Data, Bank &amp; Economy</span>
+          </div>
+          <div class="pipeline-step" data-delay="2100">
+            <span class="step-icon step-pending">&#9679;</span>
+            <span class="step-label dim">Web Backend API</span>
+          </div>
+          <div class="pipeline-step" data-delay="2400">
+            <span class="step-icon step-pending">&#9679;</span>
+            <span class="step-label dim">Web Frontend Dashboard</span>
+          </div>
+          <div class="pipeline-step" data-delay="2700">
+            <span class="step-icon step-pending">&#9679;</span>
+            <span class="step-label dim">Integration &amp; Docker Deploy</span>
+          </div>
+        </div>
+
+        <!-- Phase 3: Sidepaths -->
+        <div class="phase-panel" data-uc="2" data-phase="3">
+          <div style="font-size:0.85rem;color:#94A3B8;margin-bottom:16px;opacity:0" class="sidepath-header" data-delay="0">Running 4 sidepaths in parallel:</div>
+          <div class="sidepath-grid">
+            <div class="sidepath-card" data-delay="300">
+              <span class="sp-branch">&#9484;&#9472;</span>
+              <span class="sp-name">Testing Suite</span>
+              <span class="sp-meta">3 steps</span>
+              <span class="sp-agent">Agent 1</span>
+            </div>
+            <div class="sidepath-card" data-delay="600">
+              <span class="sp-branch">&#9500;&#9472;</span>
+              <span class="sp-name">Item &amp; NPC Database</span>
+              <span class="sp-meta">2 steps</span>
+              <span class="sp-agent">Agent 2</span>
+            </div>
+            <div class="sidepath-card" data-delay="900">
+              <span class="sp-branch">&#9500;&#9472;</span>
+              <span class="sp-name">Map Builder</span>
+              <span class="sp-meta">2 steps</span>
+              <span class="sp-agent">Agent 3</span>
+            </div>
+            <div class="sidepath-card" data-delay="1200">
+              <span class="sp-branch">&#9492;&#9472;</span>
+              <span class="sp-name">Dev Docs &amp; CI/CD</span>
+              <span class="sp-meta">2 steps</span>
+              <span class="sp-agent">Agent 4</span>
+            </div>
+          </div>
+          <div class="sidepath-stats" data-delay="1600">
+            <span>Active agents: <span class="val">4</span></span>
+            <span>Token budget: <span class="val">500,000</span></span>
+          </div>
+        </div>
+
+        <!-- Phase 4: Results -->
+        <div class="phase-panel" data-uc="2" data-phase="4">
+          <div class="completion-card" data-delay="0">
+            <div class="completion-check">&#10003;</div>
+            <div class="completion-title">RuneCraft v1.0.0-SNAPSHOT.jar built!</div>
+            <div class="completion-stats">
+              <div class="comp-stat">
+                <div class="comp-stat-val">10</div>
+                <div class="comp-stat-label">Pipeline steps</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val">9</div>
+                <div class="comp-stat-label">Sidepath steps</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val blue">71</div>
+                <div class="comp-stat-label">Items loaded</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val blue">18</div>
+                <div class="comp-stat-label">NPCs spawned</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val green">4</div>
+                <div class="comp-stat-label">Quests registered</div>
+              </div>
+              <div class="comp-stat">
+                <div class="comp-stat-val green">2</div>
+                <div class="comp-stat-label">Bosses active</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+              <div style="font-size:0.85rem;color:#64748B">
+                <span style="color:#E2E8F0;font-weight:600">75,382</span> tokens
+              </div>
+              <div style="font-size:0.85rem;color:#64748B">
+                <span style="color:#FBBF24;font-weight:600">$7.96</span> cost
+              </div>
+              <div style="font-size:0.85rem;color:#64748B">
+                <span style="color:#E2E8F0;font-weight:600">48 min</span> total
+              </div>
+            </div>
+            <div class="completion-url" style="margin-top:20px">&#9881; localhost:25565 — Ready to play</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ USE CASE 3 ═══════════════════════════════════════════ -->
+<section class="use-case" id="uc3">
+  <div class="container">
+    <div class="use-case-header reveal">
+      <div class="audience-badge badge-agency">For Agencies &amp; Teams</div>
+      <h2 class="use-case-title">Agency Manages 3 Client Projects</h2>
+    </div>
+
+    <div class="phase-nav reveal reveal-delay-1">
+      <button class="phase-tab active" data-uc="3" data-phase="1">Dashboard</button>
+      <button class="phase-tab" data-uc="3" data-phase="2">Build All</button>
+      <button class="phase-tab" data-uc="3" data-phase="3">Costs</button>
+      <button class="phase-tab" data-uc="3" data-phase="4">Outsource</button>
+    </div>
+
+    <div class="sim-window reveal reveal-delay-2" data-uc="3">
+      <div class="sim-header">
+        <span class="sim-dot"></span><span class="sim-dot"></span><span class="sim-dot"></span>
+        <span class="sim-title">launchhub — agency-dashboard</span>
+      </div>
+      <div class="sim-body">
+        <!-- Phase 1: Dashboard -->
+        <div class="phase-panel active" data-uc="3" data-phase="1">
+          <div class="project-cards">
+            <div class="project-card" data-delay="0">
+              <span class="project-client">TechFlow</span>
+              <span class="project-status status-building">Building</span>
+              <span class="project-desc">E-commerce API &mdash; Step 4/8</span>
+              <span class="project-cost">$1.84</span>
+              <div class="project-progress">
+                <div class="project-bar"><div class="project-bar-fill fill-blue" data-target="50"></div></div>
+                <span class="project-pct">50%</span>
+              </div>
+            </div>
+            <div class="project-card" data-delay="300">
+              <span class="project-client">GreenLeaf</span>
+              <span class="project-status status-testing">Testing</span>
+              <span class="project-desc">Mobile App Backend &mdash; Step 7/7</span>
+              <span class="project-cost">$3.21</span>
+              <div class="project-progress">
+                <div class="project-bar"><div class="project-bar-fill fill-green" data-target="100"></div></div>
+                <span class="project-pct">100%</span>
+              </div>
+            </div>
+            <div class="project-card" data-delay="600">
+              <span class="project-client">StartupXYZ</span>
+              <span class="project-status status-queued">Queued</span>
+              <span class="project-desc">Landing + Dashboard &mdash; Step 0/6</span>
+              <span class="project-cost">$0.00</span>
+              <div class="project-progress">
+                <div class="project-bar"><div class="project-bar-fill fill-gray" data-target="0"></div></div>
+                <span class="project-pct">0%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2: Build All -->
+        <div class="phase-panel" data-uc="3" data-phase="2">
+          <div class="build-all-btn running" data-delay="0">BUILD ALL &#9654; Running 3 projects, 6 agents active</div>
+          <div style="display:grid;gap:8px">
+            <div class="agent-line" data-delay="400">
+              <span class="agent-tag agent-tag-1">Agent 1</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">TechFlow</strong> &mdash; Payment webhook...</span>
+            </div>
+            <div class="agent-line" data-delay="600">
+              <span class="agent-tag agent-tag-2">Agent 2</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">TechFlow</strong> &mdash; Order API...</span>
+            </div>
+            <div class="agent-line" data-delay="800">
+              <span class="agent-tag agent-tag-3">Agent 3</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">GreenLeaf</strong> &mdash; Final test suite...</span>
+            </div>
+            <div class="agent-line" data-delay="1000">
+              <span class="agent-tag agent-tag-4">Agent 4</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">StartupXYZ</strong> &mdash; Scaffold...</span>
+            </div>
+            <div class="agent-line" data-delay="1200">
+              <span class="agent-tag agent-tag-5">Agent 5</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">StartupXYZ</strong> &mdash; Auth system...</span>
+            </div>
+            <div class="agent-line" data-delay="1400">
+              <span class="agent-tag agent-tag-6">Agent 6</span>
+              <span class="agent-text" style="color:#94A3B8"><strong style="color:#F8FAFC">StartupXYZ</strong> &mdash; Database layer...</span>
+            </div>
+          </div>
+          <div class="progress-bar-wrap" style="margin-top:24px">
+            <div class="progress-bar-fill" data-target="38"></div>
+          </div>
+          <div class="progress-stats">
+            <span>Total spend: <span class="cost-val">$5.05</span></span>
+            <span>Active: <span class="val">6 agents</span></span>
+            <span>ETA: <span class="val">~12 min</span></span>
+          </div>
+        </div>
+
+        <!-- Phase 3: Cost Breakdown -->
+        <div class="phase-panel" data-uc="3" data-phase="3">
+          <div class="cost-table" data-delay="0">
+            <div class="cost-table-header">Monthly Client Report</div>
+            <div class="cost-row">
+              <span class="cost-name">TechFlow</span>
+              <span class="cost-val">$4.82</span>
+              <span class="cost-steps">8 steps</span>
+              <span class="cost-time">2.1 hrs</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-name">GreenLeaf</span>
+              <span class="cost-val">$3.21</span>
+              <span class="cost-steps">7 steps</span>
+              <span class="cost-time">1.4 hrs</span>
+            </div>
+            <div class="cost-row">
+              <span class="cost-name">StartupXYZ</span>
+              <span class="cost-val">$2.47</span>
+              <span class="cost-steps">6 steps</span>
+              <span class="cost-time">0.9 hrs</span>
+            </div>
+            <div class="cost-row total">
+              <span class="cost-name">Total</span>
+              <span class="cost-val">$10.50</span>
+              <span class="cost-steps">21 steps</span>
+              <span class="cost-time">4.4 hrs</span>
+            </div>
+            <div class="cost-row outsource">
+              <span class="cost-name">Outsourced actions</span>
+              <span class="cost-val">$45.00</span>
+              <span class="cost-steps">6 actions</span>
+              <span class="cost-time"></span>
+            </div>
+            <div class="cost-row invoice highlight" style="border-top:2px solid rgba(74,222,128,0.3);padding-top:16px;margin-top:8px">
+              <span class="cost-name" style="color:#F8FAFC;font-weight:700">Invoice total</span>
+              <span class="cost-val" style="color:#4ADE80;font-size:1.05rem">$55.50</span>
+              <span class="cost-steps"></span>
+              <span class="cost-time"></span>
+            </div>
+            <div class="cost-row margin-row">
+              <span class="cost-name" style="color:#4ADE80;font-weight:600">Your margin</span>
+              <span class="cost-val" style="color:#4ADE80">~$2,450</span>
+              <span class="cost-steps" style="color:#64748B;font-size:0.8rem">billing $2,500</span>
+              <span class="cost-time"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 4: Outsource Queue -->
+        <div class="phase-panel" data-uc="3" data-phase="4">
+          <div style="font-size:0.85rem;color:#94A3B8;margin-bottom:16px;opacity:0" class="outsource-header" data-delay="0">6 actions outsourced across 3 clients:</div>
+          <div class="outsource-item" data-delay="200">
+            <span class="aq-status aq-status-done"></span>
+            <span class="outsource-text"><span class="client-tag">TechFlow:</span> Domain + SSL configured</span>
+            <span class="outsource-price">$13</span>
+          </div>
+          <div class="outsource-item" data-delay="400">
+            <span class="aq-status aq-status-done"></span>
+            <span class="outsource-text"><span class="client-tag">TechFlow:</span> Stripe Connect setup</span>
+            <span class="outsource-price">$20</span>
+          </div>
+          <div class="outsource-item" data-delay="600">
+            <span class="aq-status aq-status-done"></span>
+            <span class="outsource-text"><span class="client-tag">GreenLeaf:</span> Firebase project setup</span>
+            <span class="outsource-price">$10</span>
+          </div>
+          <div class="outsource-item" data-delay="800">
+            <span class="aq-status aq-status-active"></span>
+            <span class="outsource-text"><span class="client-tag">StartupXYZ:</span> AWS S3 bucket + CloudFront</span>
+            <span class="outsource-price">$25</span>
+            <span class="outsource-badge in-progress">In progress</span>
+          </div>
+          <div class="outsource-item" data-delay="1000">
+            <span class="aq-status aq-status-pending"></span>
+            <span class="outsource-text"><span class="client-tag">StartupXYZ:</span> SendGrid domain verification</span>
+            <span class="outsource-price">$5</span>
+          </div>
+          <div class="outsource-item" data-delay="1200">
+            <span class="aq-status aq-status-pending"></span>
+            <span class="outsource-text"><span class="client-tag">StartupXYZ:</span> Google OAuth app registration</span>
+            <span class="outsource-price">$10</span>
+          </div>
+          <div class="outsource-summary" data-delay="1500">
+            Ops team handling: <strong style="color:#4ADE80">4/6 done</strong>, 2 remaining
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CTA ═══════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content reveal">
+      <h2 class="cta-title">Ready to build like this?</h2>
+      <p class="cta-subtitle">Pick a deposit tier and start building your first project today.</p>
+      <div class="cta-buttons">
+        <a href="index.html#pricing" class="btn btn-primary btn-large">$20 Starter Deposit</a>
+        <a href="index.html#pricing" class="btn btn-secondary btn-large">$50 Builder Deposit</a>
+        <a href="index.html#pricing" class="btn btn-ghost btn-large">$200 Pro Deposit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 LaunchHub. Build fast. Stay in control.</p>
+  </div>
+</footer>
+
+<script>
+// ========== INTERSECTION OBSERVER FOR REVEALS ==========
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ========== PHASE TAB SWITCHING ==========
+document.querySelectorAll('.phase-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const uc = tab.dataset.uc;
+    const phase = tab.dataset.phase;
+
+    // Update tabs
+    document.querySelectorAll(`.phase-tab[data-uc="${uc}"]`).forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Update panels
+    const simWindow = document.querySelector(`.sim-window[data-uc="${uc}"]`);
+    simWindow.querySelectorAll('.phase-panel').forEach(p => p.classList.remove('active'));
+    const panel = simWindow.querySelector(`.phase-panel[data-uc="${uc}"][data-phase="${phase}"]`);
+    panel.classList.add('active');
+
+    // Animate the new panel
+    animatePanel(panel);
+  });
+});
+
+// ========== ANIMATION ENGINE ==========
+function animatePanel(panel) {
+  // Chat lines
+  panel.querySelectorAll('.chat-line').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Chat generating
+  panel.querySelectorAll('.chat-generating').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Pipeline steps
+  panel.querySelectorAll('.pipeline-step').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Pipeline sidepaths
+  panel.querySelectorAll('.pipeline-sidepath').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Agent lines
+  panel.querySelectorAll('.agent-line').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Progress bars
+  panel.querySelectorAll('.progress-bar-fill').forEach(bar => {
+    bar.style.width = '0%';
+    const target = bar.dataset.target || 0;
+    setTimeout(() => { bar.style.width = target + '%'; }, 300);
+  });
+
+  // Project bars
+  panel.querySelectorAll('.project-bar-fill').forEach(bar => {
+    bar.style.width = '0%';
+    const target = bar.dataset.target || 0;
+    setTimeout(() => { bar.style.width = target + '%'; }, 600);
+  });
+
+  // Counter animations
+  panel.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    const prefix = el.dataset.prefix || '';
+    const isFloat = target % 1 !== 0;
+    animateCount(el, 0, target, 2000, prefix, isFloat);
+  });
+
+  // Action queue
+  panel.querySelectorAll('.aq-header').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+  panel.querySelectorAll('.aq-item').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Completion cards
+  panel.querySelectorAll('.completion-card').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay + 200);
+  });
+
+  // Project cards
+  panel.querySelectorAll('.project-card').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Build all button
+  panel.querySelectorAll('.build-all-btn').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Cost table
+  panel.querySelectorAll('.cost-table').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay + 200);
+  });
+
+  // Sidepath cards
+  panel.querySelectorAll('.sidepath-card').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Sidepath header + stats
+  panel.querySelectorAll('.sidepath-header, .sidepath-stats').forEach(el => {
+    el.style.opacity = '0';
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => { el.style.opacity = '1'; el.style.transition = 'opacity 0.5s ease'; }, delay);
+  });
+  panel.querySelectorAll('.sidepath-stats').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+
+  // Outsource items
+  panel.querySelectorAll('.outsource-item').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+  panel.querySelectorAll('.outsource-header').forEach(el => {
+    el.style.opacity = '0';
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => { el.style.opacity = '1'; el.style.transition = 'opacity 0.5s ease'; }, delay);
+  });
+  panel.querySelectorAll('.outsource-summary').forEach(el => {
+    el.classList.remove('visible');
+    const delay = parseInt(el.dataset.delay) || 0;
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
+}
+
+function animateCount(el, start, end, duration, prefix, isFloat) {
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+    const current = start + (end - start) * eased;
+    if (isFloat) {
+      el.textContent = prefix + current.toFixed(2);
+    } else {
+      el.textContent = prefix + Math.round(current).toLocaleString();
+    }
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// ========== AUTO-PLAY ON SCROLL ==========
+const autoPlayObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const simWindow = entry.target;
+      const activePanel = simWindow.querySelector('.phase-panel.active');
+      if (activePanel) animatePanel(activePanel);
+
+      // Auto-advance through phases
+      const uc = simWindow.dataset.uc;
+      const tabs = document.querySelectorAll(`.phase-tab[data-uc="${uc}"]`);
+      let currentPhase = 0;
+      const phaseInterval = setInterval(() => {
+        currentPhase++;
+        if (currentPhase >= tabs.length) {
+          clearInterval(phaseInterval);
+          return;
+        }
+        tabs[currentPhase].click();
+      }, 5000);
+
+      // Store interval so we can clear on manual click
+      simWindow._autoInterval = phaseInterval;
+
+      autoPlayObserver.unobserve(simWindow);
+    }
+  });
+}, { threshold: 0.25 });
+
+document.querySelectorAll('.sim-window').forEach(sw => autoPlayObserver.observe(sw));
+
+// Stop auto-advance on manual tab click
+document.querySelectorAll('.phase-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const uc = tab.dataset.uc;
+    const simWindow = document.querySelector(`.sim-window[data-uc="${uc}"]`);
+    if (simWindow && simWindow._autoInterval) {
+      clearInterval(simWindow._autoInterval);
+      simWindow._autoInterval = null;
+    }
+  });
+});
+
+// ========== ANIMATE FIRST VISIBLE PANELS ON LOAD ==========
+// If already in viewport (top of page), trigger immediately
+setTimeout(() => {
+  document.querySelectorAll('.sim-window').forEach(sw => {
+    const rect = sw.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      // Trigger via observer naturally
+    }
+  });
+}, 100);
+</script>
+</body>
+</html>
