@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#1E40AF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="#0F172A"/>
+
+  <!-- Subtle outer glow ring -->
+  <circle cx="256" cy="256" r="160" fill="none" stroke="url(#iconGrad)" stroke-width="2" opacity="0.15"/>
+
+  <!-- Hub network: connection lines from center to outer nodes -->
+  <line x1="256" y1="256" x2="256" y2="120" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+  <line x1="256" y1="256" x2="374" y2="188" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+  <line x1="256" y1="256" x2="374" y2="324" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+  <line x1="256" y1="256" x2="256" y2="392" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+  <line x1="256" y1="256" x2="138" y2="324" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+  <line x1="256" y1="256" x2="138" y2="188" stroke="#2563EB" stroke-width="3.5" opacity="0.5"/>
+
+  <!-- Perimeter connections (node to node) -->
+  <line x1="256" y1="120" x2="374" y2="188" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+  <line x1="374" y1="188" x2="374" y2="324" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+  <line x1="374" y1="324" x2="256" y2="392" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+  <line x1="256" y1="392" x2="138" y2="324" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+  <line x1="138" y1="324" x2="138" y2="188" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+  <line x1="138" y1="188" x2="256" y2="120" stroke="#1E40AF" stroke-width="2" opacity="0.25"/>
+
+  <!-- Outer node glows -->
+  <circle cx="256" cy="120" r="20" fill="#2563EB" opacity="0.1"/>
+  <circle cx="374" cy="188" r="20" fill="#2563EB" opacity="0.1"/>
+  <circle cx="374" cy="324" r="20" fill="#2563EB" opacity="0.1"/>
+  <circle cx="256" cy="392" r="20" fill="#2563EB" opacity="0.1"/>
+  <circle cx="138" cy="324" r="20" fill="#2563EB" opacity="0.1"/>
+  <circle cx="138" cy="188" r="20" fill="#2563EB" opacity="0.1"/>
+
+  <!-- Outer nodes -->
+  <circle cx="256" cy="120" r="12" fill="url(#iconGrad)"/>
+  <circle cx="374" cy="188" r="12" fill="url(#iconGrad)"/>
+  <circle cx="374" cy="324" r="12" fill="url(#iconGrad)"/>
+  <circle cx="256" cy="392" r="12" fill="url(#iconGrad)"/>
+  <circle cx="138" cy="324" r="12" fill="url(#iconGrad)"/>
+  <circle cx="138" cy="188" r="12" fill="url(#iconGrad)"/>
+
+  <!-- Center hub: core node with glow -->
+  <circle cx="256" cy="256" r="52" fill="#2563EB" opacity="0.06"/>
+  <circle cx="256" cy="256" r="40" fill="#0F172A" stroke="url(#iconGrad)" stroke-width="4"/>
+  <circle cx="256" cy="256" r="26" fill="url(#iconGrad)"/>
+
+  <!-- Code brackets inside center node -->
+  <text x="256" y="265" text-anchor="middle" font-family="'SF Mono', 'Fira Code', 'Consolas', monospace" font-size="26" font-weight="700" fill="#ffffff" letter-spacing="-1">&lt;/&gt;</text>
+</svg>

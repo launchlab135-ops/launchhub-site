@@ -1,0 +1,1017 @@
+/* ==========================================================================
+   AI Hub — Design System
+   Version: 1.0.0
+   Dark-first SaaS brand system
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Google Fonts
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ==========================================================================
+   1. DESIGN TOKENS (CSS Custom Properties)
+   ========================================================================== */
+:root {
+  /* --------------------------------------------------------------------
+     Brand Colors
+     -------------------------------------------------------------------- */
+  --brand-primary:        #2563EB;
+  --brand-primary-light:  #3B82F6;
+  --brand-primary-dark:   #1E40AF;
+  --brand-primary-darker: #1E3A8A;
+
+  --brand-secondary:        #8B5CF6;
+  --brand-secondary-light:  #A78BFA;
+  --brand-secondary-dark:   #7C3AED;
+
+  --brand-accent:        #06B6D4;
+  --brand-accent-light:  #22D3EE;
+  --brand-accent-dark:   #0891B2;
+
+  /* --------------------------------------------------------------------
+     Neutral Scale (Slate)
+     -------------------------------------------------------------------- */
+  --slate-50:   #F8FAFC;
+  --slate-100:  #F1F5F9;
+  --slate-200:  #E2E8F0;
+  --slate-300:  #CBD5E1;
+  --slate-400:  #94A3B8;
+  --slate-500:  #64748B;
+  --slate-600:  #475569;
+  --slate-700:  #334155;
+  --slate-800:  #1E293B;
+  --slate-900:  #0F172A;
+  --slate-950:  #020617;
+
+  /* --------------------------------------------------------------------
+     Semantic / State Colors
+     -------------------------------------------------------------------- */
+  --color-success:       #10B981;
+  --color-success-light: #34D399;
+  --color-success-dark:  #059669;
+  --color-success-bg:    rgba(16, 185, 129, 0.12);
+
+  --color-warning:       #F59E0B;
+  --color-warning-light: #FBBF24;
+  --color-warning-dark:  #D97706;
+  --color-warning-bg:    rgba(245, 158, 11, 0.12);
+
+  --color-error:       #EF4444;
+  --color-error-light: #F87171;
+  --color-error-dark:  #DC2626;
+  --color-error-bg:    rgba(239, 68, 68, 0.12);
+
+  --color-info:       #3B82F6;
+  --color-info-light: #60A5FA;
+  --color-info-dark:  #2563EB;
+  --color-info-bg:    rgba(59, 130, 246, 0.12);
+
+  /* --------------------------------------------------------------------
+     Gradients
+     -------------------------------------------------------------------- */
+  --gradient-brand:      linear-gradient(135deg, #2563EB 0%, #8B5CF6 100%);
+  --gradient-brand-soft: linear-gradient(135deg, rgba(37,99,235,0.15) 0%, rgba(139,92,246,0.15) 100%);
+  --gradient-accent:     linear-gradient(135deg, #06B6D4 0%, #2563EB 100%);
+  --gradient-dark:       linear-gradient(180deg, #0F172A 0%, #020617 100%);
+  --gradient-glow:       radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37,99,235,0.12), transparent 40%);
+  --gradient-hero:       radial-gradient(ellipse 80% 50% at 50% -20%, rgba(37,99,235,0.25), transparent);
+
+  /* --------------------------------------------------------------------
+     Surface Colors (Dark Theme Default)
+     -------------------------------------------------------------------- */
+  --surface-base:     #0F172A;
+  --surface-raised:   #1E293B;
+  --surface-overlay:  #334155;
+  --surface-sunken:   #020617;
+
+  --text-primary:   #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-tertiary:  #94A3B8;
+  --text-muted:     #64748B;
+  --text-inverse:   #0F172A;
+
+  --border-default: rgba(148, 163, 184, 0.12);
+  --border-subtle:  rgba(148, 163, 184, 0.06);
+  --border-strong:  rgba(148, 163, 184, 0.24);
+
+  /* --------------------------------------------------------------------
+     Typography
+     -------------------------------------------------------------------- */
+  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:  'JetBrains Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+
+  /* Type Scale (1.25 ratio — Major Third) */
+  --text-xs:    0.75rem;    /* 12px */
+  --text-sm:    0.875rem;   /* 14px */
+  --text-base:  1rem;       /* 16px */
+  --text-lg:    1.125rem;   /* 18px */
+  --text-xl:    1.25rem;    /* 20px */
+  --text-2xl:   1.5rem;     /* 24px */
+  --text-3xl:   1.875rem;   /* 30px */
+  --text-4xl:   2.25rem;    /* 36px */
+  --text-5xl:   3rem;       /* 48px */
+  --text-6xl:   3.75rem;    /* 60px */
+  --text-7xl:   4.5rem;     /* 72px */
+
+  --leading-none:    1;
+  --leading-tight:   1.15;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  --tracking-tighter: -0.05em;
+  --tracking-tight:   -0.025em;
+  --tracking-normal:  0em;
+  --tracking-wide:    0.025em;
+  --tracking-wider:   0.05em;
+  --tracking-widest:  0.1em;
+
+  --weight-light:     300;
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-extrabold: 800;
+  --weight-black:     900;
+
+  /* --------------------------------------------------------------------
+     Spacing Scale (4px base)
+     -------------------------------------------------------------------- */
+  --space-0:   0;
+  --space-px:  1px;
+  --space-0-5: 0.125rem;  /*  2px */
+  --space-1:   0.25rem;   /*  4px */
+  --space-1-5: 0.375rem;  /*  6px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-2-5: 0.625rem;  /* 10px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-3-5: 0.875rem;  /* 14px */
+  --space-4:   1rem;       /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-7:   1.75rem;   /* 28px */
+  --space-8:   2rem;      /* 32px */
+  --space-9:   2.25rem;   /* 36px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-14:  3.5rem;    /* 56px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+  --space-32:  8rem;      /* 128px */
+  --space-40:  10rem;     /* 160px */
+  --space-48:  12rem;     /* 192px */
+  --space-64:  16rem;     /* 256px */
+
+  /* --------------------------------------------------------------------
+     Border Radius
+     -------------------------------------------------------------------- */
+  --radius-none: 0;
+  --radius-sm:   0.25rem;   /* 4px  */
+  --radius-md:   0.5rem;    /* 8px  */
+  --radius-lg:   0.75rem;   /* 12px */
+  --radius-xl:   1rem;      /* 16px */
+  --radius-2xl:  1.5rem;    /* 24px */
+  --radius-full: 9999px;
+
+  /* --------------------------------------------------------------------
+     Shadows
+     -------------------------------------------------------------------- */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md:     0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg:     0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --shadow-xl:     0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+  --shadow-2xl:    0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+  --shadow-glow-sm:  0 0 10px rgba(37, 99, 235, 0.25);
+  --shadow-glow-md:  0 0 20px rgba(37, 99, 235, 0.3), 0 0 40px rgba(37, 99, 235, 0.1);
+  --shadow-glow-lg:  0 0 30px rgba(37, 99, 235, 0.35), 0 0 60px rgba(37, 99, 235, 0.15), 0 0 100px rgba(37, 99, 235, 0.05);
+  --shadow-glow-accent: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 40px rgba(6, 182, 212, 0.1);
+
+  --shadow-inner:    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-ring:     0 0 0 3px rgba(37, 99, 235, 0.4);
+
+  /* --------------------------------------------------------------------
+     Transitions & Animation
+     -------------------------------------------------------------------- */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:      cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:     cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring:  cubic-bezier(0.22, 1.0, 0.36, 1.0);
+
+  --duration-fast:    100ms;
+  --duration-normal:  200ms;
+  --duration-slow:    300ms;
+  --duration-slower:  500ms;
+  --duration-slowest: 700ms;
+
+  --transition-colors:   color var(--duration-normal) var(--ease-default),
+                         background-color var(--duration-normal) var(--ease-default),
+                         border-color var(--duration-normal) var(--ease-default);
+  --transition-opacity:  opacity var(--duration-normal) var(--ease-default);
+  --transition-shadow:   box-shadow var(--duration-normal) var(--ease-default);
+  --transition-transform: transform var(--duration-normal) var(--ease-default);
+  --transition-all:      all var(--duration-normal) var(--ease-default);
+
+  /* --------------------------------------------------------------------
+     Z-Index Scale
+     -------------------------------------------------------------------- */
+  --z-behind:    -1;
+  --z-base:      0;
+  --z-raised:    10;
+  --z-dropdown:  20;
+  --z-sticky:    30;
+  --z-overlay:   40;
+  --z-modal:     50;
+  --z-popover:   60;
+  --z-toast:     70;
+  --z-max:       999;
+
+  /* --------------------------------------------------------------------
+     Layout
+     -------------------------------------------------------------------- */
+  --container-sm:  640px;
+  --container-md:  768px;
+  --container-lg:  1024px;
+  --container-xl:  1280px;
+  --container-2xl: 1400px;
+}
+
+
+/* ==========================================================================
+   2. BASE / RESET
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+  background-color: var(--surface-base);
+}
+
+::selection {
+  background-color: rgba(37, 99, 235, 0.35);
+  color: var(--text-primary);
+}
+
+
+/* ==========================================================================
+   3. TYPOGRAPHY
+   ========================================================================== */
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+}
+
+h1, .h1 {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: var(--tracking-tighter);
+  line-height: var(--leading-none);
+}
+
+h2, .h2 {
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+h3, .h3 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+h4, .h4 {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+}
+
+h5, .h5 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+h6, .h6 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--text-secondary);
+}
+
+/* Body variants */
+.text-body-lg {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.text-body-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.text-small {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+}
+
+.text-caption {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.text-overline {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--brand-primary-light);
+}
+
+/* Paragraph */
+p {
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+p + p {
+  margin-top: var(--space-4);
+}
+
+/* Links */
+a {
+  color: var(--brand-primary-light);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-default);
+}
+
+a:hover {
+  color: var(--brand-accent-light);
+}
+
+/* Code */
+code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+code {
+  background-color: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  padding: 0.15em 0.4em;
+  color: var(--brand-accent-light);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  background-color: var(--surface-sunken);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Strong / Em */
+strong, b {
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+}
+
+/* Lists */
+ul, ol {
+  padding-left: var(--space-6);
+  color: var(--text-secondary);
+}
+
+li + li {
+  margin-top: var(--space-1);
+}
+
+
+/* ==========================================================================
+   4. UTILITY CLASSES — Layout
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.container-sm { max-width: var(--container-sm); }
+.container-md { max-width: var(--container-md); }
+.container-lg { max-width: var(--container-lg); }
+.container-2xl { max-width: var(--container-2xl); }
+
+.section {
+  padding-block: var(--space-24);
+}
+
+.section-sm {
+  padding-block: var(--space-16);
+}
+
+.flex        { display: flex; }
+.flex-col    { flex-direction: column; }
+.flex-wrap   { flex-wrap: wrap; }
+.items-center   { align-items: center; }
+.items-start    { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1  { gap: var(--space-1); }
+.gap-2  { gap: var(--space-2); }
+.gap-3  { gap: var(--space-3); }
+.gap-4  { gap: var(--space-4); }
+.gap-6  { gap: var(--space-6); }
+.gap-8  { gap: var(--space-8); }
+.gap-12 { gap: var(--space-12); }
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.mx-auto { margin-inline: auto; }
+
+.w-full  { width: 100%; }
+.h-full  { height: 100%; }
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.overflow-hidden { overflow: hidden; }
+
+
+/* ==========================================================================
+   5. UTILITY CLASSES — Colors
+   ========================================================================== */
+.text-primary   { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-tertiary  { color: var(--text-tertiary); }
+.text-muted     { color: var(--text-muted); }
+.text-brand     { color: var(--brand-primary-light); }
+.text-accent    { color: var(--brand-accent-light); }
+.text-success   { color: var(--color-success); }
+.text-warning   { color: var(--color-warning); }
+.text-error     { color: var(--color-error); }
+
+.bg-base    { background-color: var(--surface-base); }
+.bg-raised  { background-color: var(--surface-raised); }
+.bg-overlay { background-color: var(--surface-overlay); }
+.bg-sunken  { background-color: var(--surface-sunken); }
+
+.bg-gradient-brand { background: var(--gradient-brand); }
+.bg-gradient-accent { background: var(--gradient-accent); }
+.bg-gradient-dark  { background: var(--gradient-dark); }
+
+.gradient-text {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* ==========================================================================
+   6. COMPONENTS — Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: all var(--duration-normal) var(--ease-default);
+  outline: none;
+}
+
+.btn:focus-visible {
+  box-shadow: var(--shadow-ring);
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Primary */
+.btn-primary {
+  background: var(--brand-primary);
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background: var(--brand-primary-light);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.btn-primary:active {
+  background: var(--brand-primary-dark);
+}
+
+/* Secondary / Outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-raised);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary-light);
+}
+
+/* Ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+  background: rgba(148, 163, 184, 0.08);
+  color: var(--text-primary);
+}
+
+/* Gradient */
+.btn-gradient {
+  background: var(--gradient-brand);
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-gradient:hover {
+  box-shadow: var(--shadow-glow-md);
+  transform: translateY(-1px);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+/* Sizes */
+.btn-sm {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+.btn-lg {
+  font-size: var(--text-base);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-xl);
+}
+
+.btn-xl {
+  font-size: var(--text-lg);
+  padding: var(--space-5) var(--space-10);
+  border-radius: var(--radius-xl);
+}
+
+/* Icon button */
+.btn-icon {
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
+}
+
+
+/* ==========================================================================
+   7. COMPONENTS — Cards
+   ========================================================================== */
+.card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  transition: all var(--duration-slow) var(--ease-default);
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-glow:hover {
+  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-2px);
+  border-color: rgba(37, 99, 235, 0.3);
+  box-shadow: var(--shadow-glow-sm);
+}
+
+.card-glass {
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
+
+.card-gradient {
+  background: var(--gradient-brand-soft);
+  border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+.card-flush {
+  padding: 0;
+}
+
+.card-header {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.card-body {
+  padding: var(--space-6);
+}
+
+.card-footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-default);
+}
+
+
+/* ==========================================================================
+   8. COMPONENTS — Badges
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-primary {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--brand-primary-light);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+}
+
+.badge-secondary {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--brand-secondary-light);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.badge-accent {
+  background: rgba(6, 182, 212, 0.15);
+  color: var(--brand-accent-light);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+}
+
+.badge-success {
+  background: var(--color-success-bg);
+  color: var(--color-success-light);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.badge-warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-light);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.badge-error {
+  background: var(--color-error-bg);
+  color: var(--color-error-light);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+}
+
+.badge-neutral {
+  background: rgba(148, 163, 184, 0.1);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border-default);
+}
+
+/* Dot indicator inside badge */
+.badge-dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================================
+   9. COMPONENTS — Inputs
+   ========================================================================== */
+.input {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  outline: none;
+  transition: all var(--duration-normal) var(--ease-default);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:hover {
+  border-color: var(--border-strong);
+}
+
+.input:focus {
+  border-color: var(--brand-primary);
+  box-shadow: var(--shadow-ring);
+}
+
+.input-lg {
+  font-size: var(--text-base);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-xl);
+}
+
+
+/* ==========================================================================
+   10. COMPONENTS — Dividers & Decorations
+   ========================================================================== */
+.divider {
+  border: none;
+  height: 1px;
+  background: var(--border-default);
+}
+
+.divider-gradient {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brand-primary), transparent);
+}
+
+.glow-orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.15), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.glow-orb-accent {
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.12), transparent 70%);
+}
+
+.glow-orb-secondary {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+}
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: var(--z-behind);
+}
+
+
+/* ==========================================================================
+   11. KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-down {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(37, 99, 235, 0.15); }
+  50%      { box-shadow: 0 0 30px rgba(37, 99, 235, 0.35); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Animation utility classes */
+.animate-fade-in     { animation: fade-in var(--duration-slow) var(--ease-out) both; }
+.animate-fade-in-up  { animation: fade-in-up var(--duration-slower) var(--ease-spring) both; }
+.animate-fade-in-down { animation: fade-in-down var(--duration-slower) var(--ease-spring) both; }
+.animate-slide-left  { animation: slide-in-left var(--duration-slower) var(--ease-spring) both; }
+.animate-slide-right { animation: slide-in-right var(--duration-slower) var(--ease-spring) both; }
+.animate-scale-in    { animation: scale-in var(--duration-slow) var(--ease-spring) both; }
+.animate-pulse-glow  { animation: pulse-glow 3s var(--ease-in-out) infinite; }
+.animate-float       { animation: float 4s var(--ease-in-out) infinite; }
+.animate-spin        { animation: spin 1s linear infinite; }
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Stagger delays for sequential animations */
+.delay-1 { animation-delay: 100ms; }
+.delay-2 { animation-delay: 200ms; }
+.delay-3 { animation-delay: 300ms; }
+.delay-4 { animation-delay: 400ms; }
+.delay-5 { animation-delay: 500ms; }
+.delay-6 { animation-delay: 600ms; }
+
+
+/* ==========================================================================
+   12. RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 640px) {
+  h1, .h1 { font-size: var(--text-4xl); }
+  h2, .h2 { font-size: var(--text-3xl); }
+  h3, .h3 { font-size: var(--text-2xl); }
+
+  .section    { padding-block: var(--space-16); }
+  .section-sm { padding-block: var(--space-10); }
+
+  .container { padding-inline: var(--space-4); }
+
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-xl {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-8);
+  }
+
+  .hide-mobile { display: none; }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1, .h1 { font-size: var(--text-5xl); }
+
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hide-tablet { display: none; }
+}
+
+@media (min-width: 1025px) {
+  .hide-desktop { display: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ==========================================================================
+   13. SCROLLBAR (Webkit)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-sunken);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--slate-600);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-500);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--slate-600) var(--surface-sunken);
+}
