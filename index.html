@@ -615,8 +615,87 @@ footer {
 .footer-bottom-links a { color: #475569; transition: color 0.2s; }
 .footer-bottom-links a:hover { color: #94A3B8; }
 
+/* ========== BROWSER FRAME MOCKUP ========== */
+.browser-frame {
+  background: #1E293B;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+}
+.browser-frame-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(15,23,42,0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.browser-dot:nth-child(1) { background: #EF4444; }
+.browser-dot:nth-child(2) { background: #EAB308; }
+.browser-dot:nth-child(3) { background: #22C55E; }
+.browser-frame img {
+  width: 100%;
+  display: block;
+}
+.hero-screenshot {
+  margin-top: 64px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  animation: fadeInUp 0.8s ease both 0.8s;
+  opacity: 0;
+}
+.hero-screenshot::before {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(37, 99, 235, 0.15), transparent);
+  z-index: -1;
+  border-radius: 50%;
+  filter: blur(40px);
+}
+.screenshot-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #64748B;
+  margin-top: 12px;
+  font-style: italic;
+}
+.step-screenshot {
+  margin-top: 20px;
+}
+.usp-screenshot {
+  margin-top: 16px;
+}
+/* ========== SEE THE REAL PRODUCT ========== */
+.real-product-section { padding: 120px 0; position: relative; }
+.real-product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 64px;
+}
+.real-product-item .browser-frame {
+  margin-bottom: 0;
+}
+.real-product-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94A3B8;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
+  .real-product-grid { grid-template-columns: repeat(2, 1fr); }
   .steps-grid, .usp-grid, .pricing-grid, .testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -644,6 +723,7 @@ footer {
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   .hero { min-height: auto; padding: 120px 24px 64px; }
   .price-card.popular { order: -1; }
+  .real-product-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -693,47 +773,17 @@ footer {
         Reserve Your Spot &mdash; $10
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
-      <a href="demo.html" class="btn btn-secondary btn-large">See It In Action</a>
+      <a href="#how-it-works" class="btn btn-secondary btn-large">See How It Works</a>
     </div>
 
-    <div class="hero-terminal">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-dot"></span>
-          <span class="terminal-title">launchhub build &mdash; my-saas-app</span>
+    <div class="hero-screenshot">
+      <div class="browser-frame">
+        <div class="browser-frame-header">
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
+          <span class="browser-dot"></span>
         </div>
-        <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="terminal-prompt">$</span>
-            <span class="terminal-text">launchhub build <span class="highlight">--project</span> my-saas-app</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[fork 1/3]</span> Building auth + dashboard... <span class="success">done</span></span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[fork 2/3]</span> Building payment integration... <span class="success">done</span></span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[fork 3/3]</span> Building landing page... <span class="success">done</span></span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">[merge]</span> Combining 3 parallel paths... <span class="success">clean merge</span></span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="dim">tokens:</span> 8,421 <span class="dim">(saved 62%)</span> &middot; <span class="dim">cost:</span> <span class="highlight">$0.28</span> &middot; <span class="dim">files:</span> 47 created</span>
-          </div>
-          <div class="terminal-line">
-            <span class="terminal-prompt">&nbsp;</span>
-            <span class="terminal-text"><span class="success">&#9679;</span> 3x faster than sequential. You approved every step.</span>
-          </div>
-        </div>
+        <img src="img/fullview.png" alt="LaunchHub full application view showing project pipeline, action queue, and build controls" loading="lazy">
       </div>
     </div>
   </div>
@@ -761,6 +811,14 @@ footer {
         <h3 class="step-title">Plan</h3>
         <span class="step-role">AI + You</span>
         <p class="step-desc">AI generates a complete build plan: tech stack, folder structure, parallel tasks. You see everything before a single line is written. Drag, remove, or add steps.</p>
+        <div class="step-screenshot" style="margin-top:20px">
+          <div class="browser-frame">
+            <div class="browser-frame-header">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            </div>
+            <img src="img/pipeline.png" alt="LaunchHub build pipeline view with step-by-step progress" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="step-card reveal reveal-delay-3">
         <div class="step-number">3</div>
@@ -794,6 +852,14 @@ footer {
         </div>
         <h3 class="usp-title">Parallel Development</h3>
         <p class="usp-desc">Forks tasks into sidepaths, spins up multiple AI terminals simultaneously, then merges results. Build 3-5x faster than one-at-a-time tools.</p>
+        <div class="usp-screenshot" style="margin-top:16px;position:relative;z-index:1">
+          <div class="browser-frame">
+            <div class="browser-frame-header">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            </div>
+            <img src="img/sidepaths.png" alt="Parallel sidepaths running multiple AI agents simultaneously" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="usp-card reveal reveal-delay-3">
         <div class="usp-icon">
@@ -808,6 +874,14 @@ footer {
         </div>
         <h3 class="usp-title">Zero-Touch Delivery</h3>
         <p class="usp-desc">Manual steps like buying domains, setting up payments, configuring DNS get outsourced to our ops team. You focus on the product, we handle the boring stuff.</p>
+        <div class="usp-screenshot" style="margin-top:16px;position:relative;z-index:1">
+          <div class="browser-frame">
+            <div class="browser-frame-header">
+              <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+            </div>
+            <img src="img/action-queue.png" alt="Action Queue panel with outsource buttons for manual tasks" loading="lazy">
+          </div>
+        </div>
       </div>
       <div class="usp-card reveal reveal-delay-2">
         <div class="usp-icon">
@@ -904,6 +978,55 @@ footer {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           Private community access
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== SEE THE REAL PRODUCT ====== -->
+<section class="real-product-section" id="real-product">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <span class="section-label" style="justify-content:center;">See The Real Product</span>
+      <h2 class="section-title">Not mockups. Not wireframes.<br>This is the actual product.</h2>
+      <p class="section-subtitle" style="margin:0 auto;">Every screenshot below is taken directly from LaunchHub in action.</p>
+    </div>
+    <div class="real-product-grid">
+      <div class="real-product-item reveal reveal-delay-1">
+        <div class="browser-frame">
+          <div class="browser-frame-header">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <img src="img/pipeline.png" alt="Visual build pipeline with step-by-step progress" loading="lazy">
+        </div>
+        <p class="real-product-caption">Visual build pipeline with step-by-step progress</p>
+      </div>
+      <div class="real-product-item reveal reveal-delay-2">
+        <div class="browser-frame">
+          <div class="browser-frame-header">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <img src="img/sidepaths.png" alt="Parallel sidepaths run multiple AI agents at once" loading="lazy">
+        </div>
+        <p class="real-product-caption">Parallel sidepaths run multiple AI agents at once</p>
+      </div>
+      <div class="real-product-item reveal reveal-delay-3">
+        <div class="browser-frame">
+          <div class="browser-frame-header">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <img src="img/action-queue.png" alt="Action Queue tells you exactly what to do manually" loading="lazy">
+        </div>
+        <p class="real-product-caption">Action Queue tells you exactly what to do manually</p>
+      </div>
+      <div class="real-product-item reveal reveal-delay-4">
+        <div class="browser-frame">
+          <div class="browser-frame-header">
+            <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+          </div>
+          <img src="img/ops-dashboard.png" alt="Outsource manual work to our ops team" loading="lazy">
+        </div>
+        <p class="real-product-caption">Outsource manual work to our ops team</p>
       </div>
     </div>
   </div>
